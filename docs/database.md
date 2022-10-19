@@ -13,7 +13,7 @@
 
 储存用户的个人信息，其包含以下内容：
 
-| VARCHAR(50) | CHARACTER(12) | CHARACTER(15) | SMALLINT | VARCHAR(20) | CHARACTER(32) | CHARACTER(20) | SMALLINT | CHARACTER(20) | CHARACTER(37) |
+| VARCHAR(50) | CHARACTER(12) | CHARACTER(15) | SMALLINT | VARCHAR(20) | CHARACTER(32) | INTEGER | SMALLINT | CHARACTER(20) | CHARACTER(37) |
 |:-----------:|:-------------:|:-------------:|:--------:|:-----------:|:-------------:|:-------------:|:--------:|:-------------:|:-------------:|
 |   邮箱（主键）    |      名字       |      学号       |   班级编号   |     用户名     |     密码MD5     |    所属小队ID     |    权限    |       盐       |     头像文件名     |
 
@@ -21,7 +21,7 @@
 
 储存小队的信息，其包含以下内容：
 
-| CHARACTER(20) | CHARACTER(20) | VARCHAR(50) | VARCHAR(50) | VARCHAR(50) | SMALLINT | INTEGER | CHARACTER(5) |
+| INTEGER | CHARACTER(20) | VARCHAR(50) | VARCHAR(50) | VARCHAR(50) | SMALLINT | INTEGER | CHARACTER(5) |
 |:-------------:|:-------------:|:-----------:|:-----------:|:-----------:|:--------:|:-------:|:------------:|
 |   小队ID（主键）    |     小队名字      |   成员1（邮箱）   |   成员2（邮箱）   |   成员3（邮箱）   |   队长编号   |  项目ID   |      学期      |
 
