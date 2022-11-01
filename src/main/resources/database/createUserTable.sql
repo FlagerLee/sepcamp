@@ -4,8 +4,8 @@ USE SEPCAMP;
 
 CREATE TABLE IF NOT EXISTS SEPCAMP_USER
 (
-    USER_ID     INTEGER         NOT NULL PRIMARY KEY AUTO_IN COMMENT '邮箱（主键）',
-    EMAIL       VARCHAR(50)     NOT NULL COMMENT '邮箱（主键）',
+    USER_ID     INTEGER         NOT NULL PRIMARY KEY AUTO_IN COMMENT '用户ID',
+    EMAIL       VARCHAR(50)     NOT NULL COMMENT '邮箱',
     NAME        CHAR(12)        NOT NULL COMMENT '真实名字',
     STUDENT_ID  CHAR(15)        COMMENT '学号，助教老师不包含该项',
     CLASS_ID    SMALLINT        COMMENT '班级编号，助教老师不包含该项',
