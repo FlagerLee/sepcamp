@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+#https://blog.csdn.net/iku5200/article/details/82856621/
+spring:
+  datasource:
+    username: root
+    password: qq1220614922
+    url: jdbc:mysql://localhost:3306/sepcamp?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:daos/*Mapper.xml
+  type-aliases-package: com.seclass.sepcamp.entity
+
+logging:
+  level:
+    com:
+      example:
+        mapper : debug
