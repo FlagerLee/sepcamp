@@ -1,4 +1,4 @@
-package com.seclass.sepcamp.controller;
+package com.seclass.sepcamp.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
