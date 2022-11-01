@@ -15,6 +15,17 @@ public class Team {
         Term = term;
     }
 
+    @Override
+    public String toString() {
+        return "Team{" +
+                "TeamId=" + TeamId +
+                ", TeamName='" + TeamName + '\'' +
+                ", Leader=" + Leader +
+                ", ProjectId=" + ProjectId +
+                ", Term='" + Term + '\'' +
+                '}';
+    }
+
     public int getTeamId() {
         return TeamId;
     }

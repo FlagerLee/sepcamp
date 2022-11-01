@@ -9,8 +9,8 @@
         <result column="realName" jdbcType="VARCHAR" property="realName" />
     </resultMap>
 
-    <select id="Sel" resultType="com.seclass.sepcamp.models.Team">
-        select * from sepcamp_team where team_id = #{id}
+    <select id="GetOneTeam" resultType="com.seclass.sepcamp.models.Team">
+        select * from sepcamp_team where team_id = #{teamId}
     </select>
 
 </mapper>

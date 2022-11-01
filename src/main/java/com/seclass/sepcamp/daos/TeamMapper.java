@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TeamMapper {
 
-    public Team GetTeam(int teamId);
+    Team GetOneTeam(int teamId);
 
 
 }
