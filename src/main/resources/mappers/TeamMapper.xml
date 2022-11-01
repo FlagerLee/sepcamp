@@ -12,5 +12,8 @@
     <select id="GetOneTeam" resultType="com.seclass.sepcamp.models.Team">
         select * from sepcamp_team where team_id = #{teamId}
     </select>
+    <select id="GetAllTeams" resultType="com.seclass.sepcamp.models.Team">
+        select * from sepcamp_team
+    </select>
 
 </mapper>

@@ -13,9 +13,16 @@ public class TeamController {
     public TeamService teamService;
 
     @RequestMapping("getTeamById/{teamId}")
-    public String GetUser(@PathVariable int teamId){
+    public String GetTeamById(@PathVariable int teamId){
 
 
         return teamService.getTeamById(teamId).toString();
+    }
+
+    @RequestMapping("getAllTeam")
+    public String GetAllTeams(){
+
+
+        return teamService.getAllTeams().toString();
     }
 }
