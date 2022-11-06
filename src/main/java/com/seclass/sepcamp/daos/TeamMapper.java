@@ -9,7 +9,21 @@ import java.util.List;
 public interface TeamMapper {
 
     Team GetOneTeam(int teamId);
+
     List<Team> GetAllTeams();
 
+    int CreateTeam(Team team);
+
+    int DeleteOneTeam(int teamId);
+
+    int UpdateTeamNameById(String teamName,int teamId);
+
+    int UpdateTeamLeaderById(int leaderId,int teamId);
+
+    int UpdateTeamProjectById(int  projectId,int teamId);
+
+    int UpdateTeamTermById(String termId,int teamId);
+
+    int UpdateTeamById(Team team);
 
 }

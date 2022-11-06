@@ -15,6 +15,13 @@ public class Team {
         Term = term;
     }
 
+    public Team(String teamName, int leader, int projectId, String term) {
+        TeamName = teamName;
+        Leader = leader;
+        ProjectId = projectId;
+        Term = term;
+    }
+
     @Override
     public String toString() {
         return "Team{" +

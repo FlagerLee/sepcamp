@@ -16,4 +16,34 @@
         select * from sepcamp_team
     </select>
 
+    <insert id="CreateTeam" parameterType="com.seclass.sepcamp.models.Team">
+        insert into sepcamp_team(TEAM_NAME,LEADER,PROJECT_ID,TERM) values(#{TeamName},#{Leader},#{ProjectId},#{Term})
+    </insert>
+
+    <delete id="DeleteOneTeam">
+        delete from sepcamp_team where team_id = #{teamId}
+    </delete>
+
+    <update id="UpdateTeamNameById" >
+        update sepcamp_team set TEAM_NAME =#{teamName}  where team_id = #{teamId}
+    </update>
+
+    <update id="UpdateTeamLeaderById" >
+        update sepcamp_team set LEADER =#{leaderId}  where team_id = #{teamId}
+    </update>
+
+    <update id="UpdateTeamProjectById" >
+        update sepcamp_team set PROJECT_ID =#{projectId}  where team_id = #{teamId}
+    </update>
+
+
+    <update id="UpdateTeamTermById" >
+        update sepcamp_team set TERM =#{termId}  where team_id = #{teamId}
+    </update>
+
+    <update id="UpdateTeamById" parameterType="com.seclass.sepcamp.models.Team">
+        update sepcamp_team set TEAM_NAME =#{TeamName},LEADER =#{Leader},PROJECT_ID =#{ProjectId},TERM =#{Term}  where team_id = #{TeamId}
+    </update>
+
+
 </mapper>

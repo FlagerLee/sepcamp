@@ -1,5 +1,6 @@
 package com.seclass.sepcamp.controllers;
 
+import com.seclass.sepcamp.models.Team;
 import com.seclass.sepcamp.services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,13 +17,20 @@ public class TeamController {
     public String GetTeamById(@PathVariable int teamId){
 
 
-        return teamService.getTeamById(teamId).toString();
+        return teamService.GetTeamById(teamId).toString();
     }
 
     @RequestMapping("getAllTeam")
     public String GetAllTeams(){
 
 
-        return teamService.getAllTeams().toString();
+        return teamService.GetAllTeams().toString();
+    }
+
+    @RequestMapping("AddOneTeam")
+    public boolean AddOneTeam(){
+
+
+        return teamService.AddTeam(new Team("newName",1, 1, "1"));
     }
 }
