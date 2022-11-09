@@ -1,6 +1,7 @@
 package com.seclass.sepcamp.daos;
 
 import com.seclass.sepcamp.models.Team;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -9,6 +10,9 @@ import java.util.List;
 public interface TeamMapper {
 
     Team GetOneTeam(int teamId);
+
+    @Select("SELECT * FROM SEPCAMP_TEAM WHERE TEAM_NAME = #{teamName}")
+    List<Team> GetTeamByTeamname(String teamName);
 
     List<Team> GetAllTeams();
 
