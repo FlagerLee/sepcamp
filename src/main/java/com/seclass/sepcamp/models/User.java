@@ -115,4 +115,19 @@ public class User implements UserDetails {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", student_id='" + student_id + '\'' +
+                ", class_id=" + class_id +
+                ", team_id=" + team_id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", priority=" + priority +
+                ", avatar='" + avatar + '\'' +
+                '}';
+    }
 }

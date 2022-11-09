@@ -3,17 +3,15 @@
 <mapper namespace="com.seclass.sepcamp.daos.TeamMapper">
 
     <resultMap id="BaseResultMap" type="com.seclass.sepcamp.models.Team">
-        <result column="id" jdbcType="INTEGER" property="id" />
-        <result column="userName" jdbcType="VARCHAR" property="userName" />
-        <result column="passWord" jdbcType="VARCHAR" property="passWord" />
-        <result column="realName" jdbcType="VARCHAR" property="realName" />
+        <result column="TEAM_ID" jdbcType="INTEGER" property="TeamId" />
+        <result column="TEAM_NAME" jdbcType="CHAR" property="TeamName" />
+        <result column="LEADER" jdbcType="INTEGER" property="Leader" />
+        <result column="PROJECT_ID" jdbcType="INTEGER" property="ProjectId" />
+        <result column="TERM" jdbcType="CHAR" property="Term" />
     </resultMap>
 
     <select id="GetOneTeam" resultType="com.seclass.sepcamp.models.Team">
         select * from sepcamp_team where team_id = #{teamId}
-    </select>
-    <select id="GetAllTeams" resultType="com.seclass.sepcamp.models.Team">
-        select * from sepcamp_team
     </select>
 
     <insert id="CreateTeam" parameterType="com.seclass.sepcamp.models.Team">

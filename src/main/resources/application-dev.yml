@@ -12,6 +12,7 @@ spring:
 mybatis:
   mapper-locations: classpath*:mappers/*Mapper.xml
   type-aliases-package: com.seclass.sepcamp.models
+  map-underscore-to-camel-case: true
 
 logging:
   level:

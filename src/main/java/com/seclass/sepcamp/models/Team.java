@@ -1,52 +1,66 @@
 package com.seclass.sepcamp.models;
 
 public class Team {
-    int TeamId;
-    String TeamName;
+    int Team_id;
+    String Team_name;
     int Leader;
-    int ProjectId;
+    int Project_id;
     String Term;
 
     public Team(int teamId, String teamName, int leader, int projectId, String term) {
-        TeamId = teamId;
-        TeamName = teamName;
+        Team_id = teamId;
+        Team_name = teamName;
         Leader = leader;
-        ProjectId = projectId;
+        Project_id = projectId;
+        Term = term;
+    }
+
+    public Team(String teamName, int leader, String term) {
+        Team_name = teamName;
+        Leader = leader;
         Term = term;
     }
 
     public Team(String teamName, int leader, int projectId, String term) {
-        TeamName = teamName;
+        Team_name = teamName;
         Leader = leader;
-        ProjectId = projectId;
+        Project_id = projectId;
         Term = term;
+    }
+
+    public Team() {
+        Team_id = 0;
+        Team_name = "";
+        Leader = 0;
+        Project_id = 0;
+        Term = "";
     }
 
     @Override
     public String toString() {
         return "Team{" +
-                "TeamId=" + TeamId +
-                ", TeamName='" + TeamName + '\'' +
+                "TeamId=" + Team_id +
+                ", TeamName='" + Team_name + '\'' +
                 ", Leader=" + Leader +
-                ", ProjectId=" + ProjectId +
+                ", ProjectId=" + Project_id +
                 ", Term='" + Term + '\'' +
                 '}';
     }
 
-    public int getTeamId() {
-        return TeamId;
+    public int getTeam_id() {
+        return Team_id;
     }
 
-    public void setTeamId(int teamId) {
-        TeamId = teamId;
+    public void setTeam_id(int team_id) {
+        Team_id = team_id;
     }
 
-    public String getTeamName() {
-        return TeamName;
+    public String getTeam_name() {
+        return Team_name;
     }
 
-    public void setTeamName(String teamName) {
-        TeamName = teamName;
+    public void setTeam_name(String team_name) {
+        Team_name = team_name;
     }
 
     public int getLeader() {
@@ -57,12 +71,12 @@ public class Team {
         Leader = leader;
     }
 
-    public int getProjectId() {
-        return ProjectId;
+    public int getProject_id() {
+        return Project_id;
     }
 
-    public void setProjectId(int projectId) {
-        ProjectId = projectId;
+    public void setProject_id(int project_id) {
+        Project_id = project_id;
     }
 
     public String getTerm() {

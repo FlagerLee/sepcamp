@@ -1,20 +1,10 @@
 package com.seclass.sepcamp.controllers;
 
-import com.google.gson.Gson;
 import com.seclass.sepcamp.models.ResponseCreater;
 import com.seclass.sepcamp.models.Team;
 import com.seclass.sepcamp.services.TeamService;
-import com.seclass.sepcamp.utils.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.LinkedHashMap;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/team")
@@ -35,33 +25,32 @@ public class TeamController {
     //test interface
     @RequestMapping("AddOneTeam")
     public ResponseCreater AddOneTeam(){
-       return teamService.AddTeam(new Team("newName",1, 1, "1"));
+       return teamService.CreateTeam(new Team("newName",1, 1, "1"));
     }
 
 
-    @RequestMapping("CreateTeam")
+    @PostMapping("/CreateTeam")
     public ResponseCreater CreateTeam(Team team) {
-        return teamService.AddTeam(team);
+        return teamService.CreateTeam(team);
     }
-    @RequestMapping("ChangeTeamLeader")
-    public ResponseCreater ChangeTeamLeader(@PathVariable int teamId,@PathVariable int userId) {
+    @PostMapping("ChangeTeamLeader")
+    public ResponseCreater ChangeTeamLeader( int userId,int teamId) {
         return teamService.UpdateTeamLeaderById(userId,teamId);
     }
 
-    @RequestMapping("ChangeTeamProject")
-    public ResponseCreater ChangeTeamProject(@PathVariable int projectId,@PathVariable int teamId) {
+    @PostMapping("ChangeTeamProject")
+    public ResponseCreater ChangeTeamProject(int projectId,int teamId) {
         return teamService.UpdateTeamProjectById(projectId,teamId);
     }
 
-    @RequestMapping("ChangeTeamProject")
-    public ResponseCreater ChangeTeamNasme(@PathVariable String teamName,@PathVariable int teamId) {
+    @PostMapping("ChangeTeamName")
+    public ResponseCreater ChangeTeamName(String teamName,int teamId) {
         return teamService.UpdateTeamNameById(teamName,teamId);
     }
 
-    @RequestMapping("DropOutOfLine")
-    public ResponseCreater DropOutOfLine(@PathVariable int userId)
+    @PostMapping("DropOutOfLine")
+    public ResponseCreater DropOutOfLine(int userId)
     {
-        //TODO 用户处将队伍id改为 0 或 -1
         return teamService.DropOutOfLine(userId);
 
     }

@@ -23,9 +23,10 @@ public class TeamService {
 
     public List<Team> GetAllTeams(){
         // return new Team(1,"123",1,1,"321");
+        System.out.println(teamMapper.GetAllTeams());
         return teamMapper.GetAllTeams();
     }
-    public synchronized ResponseCreater AddTeam(Team t){
+    public synchronized ResponseCreater CreateTeam(Team t){
         //先查询该用户是否具有队伍
         User user = userDao.getUserByUserId(t.getLeader());
         if(user == null){
@@ -35,11 +36,12 @@ public class TeamService {
         //TODO 会有并发问题，同一用户同一时间进行两支队伍的创建,暂时通过synchronized解决
         if(user.getTeam_id() != 0){
             //表示该用户已经有队伍
+            System.out.println(user.toString());
             return new ResponseCreater("该用户已经在一支队伍中，无法创建新队伍",false);
         }
 
         //check parameter
-        if(t.getTeamName().length() > 20 || t.getTeamName().length() <= 0 ){
+        if(t.getTeam_name().length() > 20 || t.getTeam_name().length() <= 0 ){
             return new ResponseCreater("队伍名字长度不符合要求，请限制在1 ~ 20个字符",false);
         }  else  if(t.getTerm().length() > 5 || t.getTerm().length() <= 0 ){
             return new ResponseCreater("队伍学期标识长度不符合要求，请限制在1 ~ 5个字符",false);
@@ -52,12 +54,13 @@ public class TeamService {
         }
         //通过teamname 反查team id
         boolean updateUserSuccess = false;
-        List<Team> teamLists  = teamMapper.GetTeamByTeamname(t.getTeamName());
+        List<Team> teamLists  = teamMapper.GetTeamByTeamname(t.getTeam_name());
+        System.out.println(teamLists);
         for(int i = 0 ;i < teamLists.size();i++){
             Team temp = teamLists.get(i);
             if (temp.getLeader() == t.getLeader()){
                 //找到了刚刚创建的这个team
-                updateUserSuccess = userDao.updateTeamIdForUser(temp.getLeader(), temp.getTeamId()) > 0;
+                updateUserSuccess = userDao.updateTeamIdForUser(temp.getLeader(), temp.getTeam_id()) > 0;
                 break;
             }
 
@@ -107,7 +110,10 @@ public class TeamService {
         int teamId = 0 ;
         if(thisUser == null){
             return new ResponseCreater("请求用户不存在",false);
-        }else{
+        }else if(thisUser.getTeam_id() == 0 ){
+            return new ResponseCreater("用户不在队伍中",false);
+        }
+        else {
             teamId = thisUser.getTeam_id();
         }
         boolean updateSuccess =  userDao.updateTeamIdForUser(userId,0) > 0;
