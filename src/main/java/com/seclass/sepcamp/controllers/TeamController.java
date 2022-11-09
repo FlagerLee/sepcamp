@@ -1,13 +1,18 @@
 package com.seclass.sepcamp.controllers;
 
+import com.google.gson.Gson;
 import com.seclass.sepcamp.models.Team;
 import com.seclass.sepcamp.services.TeamService;
+import com.seclass.sepcamp.utils.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.LinkedHashMap;
 
 @RestController
 @RequestMapping("/team")
@@ -33,7 +38,7 @@ public class TeamController {
 
 
     @RequestMapping("CreateTeam")
-    public boolean CreateTeam(HttpServletRequest request) throws InterruptedException{
+    public void CreateTeam(HttpServletRequest request, HttpServletResponse response) throws  IOException {
 
         String teamName =  request.getAttribute("teamName").toString();
         int userId = (int) request.getAttribute("userId");
@@ -41,10 +46,17 @@ public class TeamController {
         String term =  request.getAttribute("term").toString();
 
         //TODO 将用户的队伍id设置为此队伍id
-        return teamService.AddTeam(new Team(teamName,userId, projectId, term));
+        boolean result = teamService.AddTeam(new Team(teamName,userId, projectId, term));
+        LinkedHashMap<String,String> resultMap = new LinkedHashMap<>();
+        resultMap.put("isSuccess", String.valueOf(result));
+
+
+        response.getWriter().print(ResponseUtils.MapToString(resultMap));
+
+        return ;
     }
     @RequestMapping("ChangeTeamLeader")
-    public boolean ChangeTeamLeader(HttpServletRequest request) throws InterruptedException{
+    public boolean ChangeTeamLeader(HttpServletRequest request) {
 
         int teamId =  (int)request.getAttribute("teamId");
         int userId = (int) request.getAttribute("userId");
@@ -53,7 +65,7 @@ public class TeamController {
     }
 
     @RequestMapping("ChangeTeamProject")
-    public boolean ChangeTeamProject(HttpServletRequest request) throws InterruptedException{
+    public boolean ChangeTeamProject(HttpServletRequest request) {
 
         int teamId =  (int)request.getAttribute("teamId");
         int projectId = (int) request.getAttribute("projectId");
@@ -62,7 +74,8 @@ public class TeamController {
     }
 
     @RequestMapping("DropOutOfLine")
-    public boolean DropOutOfLine(HttpServletRequest request) throws InterruptedException{
+    public boolean DropOutOfLine(HttpServletRequest request)
+    {
 
         int userId = (int) request.getAttribute("userId");
 
