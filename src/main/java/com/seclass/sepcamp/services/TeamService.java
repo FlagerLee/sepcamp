@@ -21,33 +21,33 @@ public class TeamService {
         return teamMapper.GetAllTeams();
     }
     public boolean AddTeam(Team t){
-        // return new Team(1,"123",1,1,"321");
+
         return teamMapper.CreateTeam(t) > 0 ? true : false;
     }
 
-    public int DeleteOneTeam(int teamId) {
+    public boolean DeleteOneTeam(int teamId) {
 
-        return teamMapper.DeleteOneTeam(teamId);
+        return teamMapper.DeleteOneTeam(teamId)> 0 ? true : false;
     }
 
-    public int UpdateTeamNameById(String teamName,int teamId) {
-        return teamMapper.UpdateTeamNameById(teamName,teamId);
+    public boolean UpdateTeamNameById(String teamName,int teamId) {
+        return teamMapper.UpdateTeamNameById(teamName,teamId)> 0 ? true : false;
     }
 
-    public int UpdateTeamLeaderById(int leaderId,int teamId) {
-        return teamMapper.UpdateTeamLeaderById(leaderId,teamId);
+    public boolean UpdateTeamLeaderById(int leaderId,int teamId) {
+        return teamMapper.UpdateTeamLeaderById(leaderId,teamId) > 0 ? true : false;
     }
 
-    public int UpdateTeamProjectById(int  projectId,int teamId) {
-        return teamMapper.UpdateTeamProjectById(projectId,teamId);
+    public boolean UpdateTeamProjectById(int  projectId,int teamId) {
+        return teamMapper.UpdateTeamProjectById(projectId,teamId)> 0 ? true : false;
     }
 
-    public int UpdateTeamTermById(String termId,int teamId) {
-        return teamMapper.UpdateTeamTermById(termId,teamId);
+    public boolean UpdateTeamTermById(String termId,int teamId) {
+        return teamMapper.UpdateTeamTermById(termId,teamId)> 0 ? true : false;
     }
 
-    public int UpdateTeamById(Team team) {
-        return teamMapper.UpdateTeamById(team);
+    public boolean UpdateTeamById(Team team) {
+        return teamMapper.UpdateTeamById(team)> 0 ? true : false;
     }
 
 
