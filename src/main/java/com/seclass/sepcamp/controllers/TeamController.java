@@ -39,7 +39,7 @@ public class TeamController {
     }
 
 
-    @PostMapping("CreateTeam")
+    @RequestMapping("CreateTeam")
     public ResponseCreater CreateTeam(Team team) {
         return teamService.AddTeam(team);
     }
