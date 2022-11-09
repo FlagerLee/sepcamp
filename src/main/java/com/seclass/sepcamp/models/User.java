@@ -13,7 +13,6 @@ public class User implements UserDetails {
     private int team_id;
     private String username;
     private String password;
-    private String salt;
     private short priority;
     private String avatar;
 
@@ -99,10 +98,6 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getSalt() {
-        return salt;
     }
 
     public short getPriority() {
