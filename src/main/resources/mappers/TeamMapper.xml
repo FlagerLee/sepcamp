@@ -10,13 +10,6 @@
         <result column="TERM" jdbcType="CHAR" property="Term" />
     </resultMap>
 
-    <select id="GetOneTeam" resultType="com.seclass.sepcamp.models.Team">
-        select * from sepcamp_team where team_id = #{teamId}
-    </select>
-
-    <insert id="CreateTeam" parameterType="com.seclass.sepcamp.models.Team">
-        insert into sepcamp_team(TEAM_NAME,LEADER,PROJECT_ID,TERM) values(#{TeamName},#{Leader},#{ProjectId},#{Term})
-    </insert>
 
     <delete id="DeleteOneTeam">
         delete from sepcamp_team where team_id = #{teamId}

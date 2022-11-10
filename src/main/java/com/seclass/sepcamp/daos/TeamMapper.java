@@ -1,6 +1,7 @@
 package com.seclass.sepcamp.daos;
 
 import com.seclass.sepcamp.models.Team;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
@@ -11,22 +12,16 @@ import java.util.List;
 @Repository
 public interface TeamMapper {
 
+    @Select("select * from sepcamp_team where team_id = #{teamId}")
     Team GetOneTeam(int teamId);
 
     @Select("SELECT * FROM SEPCAMP_TEAM WHERE TEAM_NAME = #{teamName}")
-    @Results(value = {
-            @Result(property = "TEAM_ID", column = "TeamId"),
-            @Result(property = "TEAM_NAME", column = "TeamName"),
-            @Result(property = "PROJECT_ID", column = "ProjectId")})
     List<Team> GetTeamByTeamname(String teamName);
 
     @Select("SELECT * FROM SEPCAMP_TEAM")
-    @Results(value = {
-            @Result(property = "TEAM_ID", column = "TeamId"),
-            @Result(property = "TEAM_NAME", column = "TeamName"),
-            @Result(property = "PROJECT_ID", column = "ProjectId")})
     List<Team> GetAllTeams();
 
+    @Insert("insert into sepcamp_team(TEAM_NAME,LEADER,PROJECT_ID,TERM) values(#{Team_name},#{Leader},#{Project_id},#{Term})")
     int CreateTeam(Team team);
 
     int DeleteOneTeam(int teamId);

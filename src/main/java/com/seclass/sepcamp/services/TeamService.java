@@ -40,6 +40,7 @@ public class TeamService {
             return new ResponseCreater("该用户已经在一支队伍中，无法创建新队伍",false);
         }
 
+        System.out.println(t);
         //check parameter
         if(t.getTeam_name().length() > 20 || t.getTeam_name().length() <= 0 ){
             return new ResponseCreater("队伍名字长度不符合要求，请限制在1 ~ 20个字符",false);
