@@ -12,8 +12,16 @@ public class Homework {
     String End_Time ;
     String Text_Answer;
     String File_Answer;
+    String Term;
 
     //创造新作业
+    public Homework( String describe_Text, String start_Time, String end_Time,String term) {
+        Describe_Text = describe_Text;
+        Start_Time = start_Time;
+        End_Time = end_Time;
+        Term = term;
+    }
+
     public Homework(int user_Id, String describe_Text, String start_Time, String end_Time) {
         User_Id = user_Id;
         Describe_Text = describe_Text;
@@ -58,6 +66,14 @@ public class Homework {
                 ", Text_Answer='" + Text_Answer + '\'' +
                 ", File_Answer='" + File_Answer + '\'' +
                 '}';
+    }
+
+    public String getTerm() {
+        return Term;
+    }
+
+    public void setTerm(String term) {
+        Term = term;
     }
 
     public String getHomework_Id() {

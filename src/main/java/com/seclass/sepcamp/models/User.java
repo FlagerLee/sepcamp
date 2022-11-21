@@ -15,6 +15,9 @@ public class User implements UserDetails {
     private String password;
     private short priority;
     private String avatar;
+    private String term;
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -116,6 +119,14 @@ public class User implements UserDetails {
         this.avatar = avatar;
     }
 
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -128,6 +139,7 @@ public class User implements UserDetails {
                 ", password='" + password + '\'' +
                 ", priority=" + priority +
                 ", avatar='" + avatar + '\'' +
+                ", term='" + term + '\'' +
                 '}';
     }
 }

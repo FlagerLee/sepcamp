@@ -17,13 +17,12 @@ public class TeamService {
     @Autowired
     private UserDao userDao;
     public Team GetTeamById(int teamId){
-       // return new Team(1,"123",1,1,"321");
+
         return teamMapper.GetOneTeam(teamId);
     }
 
     public List<Team> GetAllTeams(){
-        // return new Team(1,"123",1,1,"321");
-        System.out.println(teamMapper.GetAllTeams());
+
         return teamMapper.GetAllTeams();
     }
     public synchronized ResponseCreater CreateTeam(Team t){
