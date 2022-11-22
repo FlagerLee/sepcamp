@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS SEPCAMP_PROJECTMANAGER
     Last_UpdateTime TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '阶段提交最后更新时间',
     Text_Answer     VARCHAR(1000)       COMMENT '阶段提交文本',
     File_Answer     VARCHAR(200)        COMMENT '阶段提交文件',
+    TERM            CHARACTER(5)    NOT NULL COMMENT '学期',
     PRIMARY KEY(Manager_Id,Project_Id),
     INDEX idx_TeamId(Team_Id)
 )

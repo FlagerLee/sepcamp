@@ -11,17 +11,19 @@ public class ProjectManager {
     String Last_UpdateTime;
     String Text_Answer;
     String File_Answer;
-
+    String Term;
     //创建阶段
-    public ProjectManager(int project_Id,int team_Id, int phase_Type, String describe_Text) {
+    public ProjectManager(String manager_Id,int project_Id,int team_Id, int phase_Type, String describe_Text,String Term) {
+        Manager_Id = manager_Id;
         Project_Id = project_Id;
         Team_Id = team_Id;
         Phase_Type = phase_Type;
         Describe_Text = describe_Text;
     }
     //修改阶段
-    public ProjectManager(String manager_Id, boolean is_Submitted, String text_Answer, String file_Answer) {
+    public ProjectManager(String manager_Id,int project_Id, boolean is_Submitted, String text_Answer, String file_Answer) {
         Manager_Id = manager_Id;
+        Project_Id = project_Id;
         Is_Submitted = is_Submitted;
         Text_Answer = text_Answer;
         File_Answer = file_Answer;

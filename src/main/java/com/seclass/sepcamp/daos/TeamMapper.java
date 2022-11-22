@@ -18,6 +18,9 @@ public interface TeamMapper {
     @Select("SELECT * FROM SEPCAMP_TEAM WHERE TEAM_NAME = #{teamName}")
     List<Team> GetTeamByTeamname(String teamName);
 
+    @Select("SELECT * FROM SEPCAMP_TEAM WHERE Term = #{Term}")
+    List<Team> GetTeamByTerm(String Term);
+
     @Select("SELECT * FROM SEPCAMP_TEAM")
     List<Team> GetAllTeams();
 

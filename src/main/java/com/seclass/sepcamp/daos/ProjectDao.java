@@ -17,8 +17,8 @@ public interface ProjectDao {
 
     @Select("Select Project_Id,Introduction,Visible,Term" +
             "From SEPCAMP_PROJECT" +
-            "Where Visible = #{Visible}")
-    List<Project>  GetProjectList(int Visible);
+            "Where Visible = #{Visible} AND Term = #{Term}")
+    List<Project>  GetProjectList(int Visible,String Term);
 
     @Select("Select Project_Id,Introduction,Visible,Term" +
             "From SEPCAMP_PROJECT" +
