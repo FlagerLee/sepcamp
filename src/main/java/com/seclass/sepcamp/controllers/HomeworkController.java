@@ -18,18 +18,18 @@ public class HomeworkController {
     public HomeworkService homeworkService;
 
     @PostMapping("/CreateHomework")
-    public ResponseCreater CreateHomework(String DescribeText,String StartTime,String EndTime,String Term) {
+    public ResponseCreater CreateHomework(String DescribeText,long StartTime,long EndTime,String Term) {
         return homeworkService.CreateHomeworkForUsers(DescribeText,StartTime,EndTime,Term);
     }
 
     @PostMapping("/DeleteHomework")
-    public ResponseCreater DeleteHomework(String HomeworkId) {
-        return homeworkService.DeleteHomework(HomeworkId);
+    public void DeleteHomework(String HomeworkId) {
+        homeworkService.DeleteHomework(HomeworkId);
     }
 
     @PostMapping("/UpdateHomework")
-    public ResponseCreater UpdateHomework(String DescribeText,String StartTime,String EndTime,String HomeworkId) {
-        return homeworkService.UpdateHomework(DescribeText,StartTime,EndTime,HomeworkId);
+    public void UpdateHomework(String DescribeText,String StartTime,String EndTime,String HomeworkId) {
+        homeworkService.UpdateHomework(DescribeText,StartTime,EndTime,HomeworkId);
     }
     @PostMapping("/SubmitHomework")
     public ResponseCreater SubmitHomework(String HomeworkId,int UserId,boolean IsSubmitted,String TextAnswer,String FileAnswer) {

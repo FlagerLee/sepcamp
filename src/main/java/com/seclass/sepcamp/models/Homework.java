@@ -15,11 +15,20 @@ public class Homework {
     String Term;
 
     //创造新作业
-    public Homework( String describe_Text, String start_Time, String end_Time,String term) {
+    public Homework( String homework_Id,int user_Id, String describe_Text, String start_Time, String end_Time,String term) {
+        Homework_Id = homework_Id;
+        User_Id = user_Id;
         Describe_Text = describe_Text;
         Start_Time = start_Time;
         End_Time = end_Time;
         Term = term;
+    }
+
+    public Homework( String homework_Id, String describe_Text, String start_Time, String end_Time) {
+        Homework_Id = homework_Id;
+        Describe_Text = describe_Text;
+        Start_Time = start_Time;
+        End_Time = end_Time;
     }
 
     public Homework(int user_Id, String describe_Text, String start_Time, String end_Time) {
@@ -30,8 +39,9 @@ public class Homework {
     }
 
     //提交、修改作业
-    public Homework(String homework_Id, String text_Answer, String file_Answer,boolean is_Submitted) {
+    public Homework(String homework_Id,int user_Id,boolean is_Submitted,String text_Answer, String file_Answer) {
         Is_Submitted = is_Submitted;
+        User_Id = user_Id;
         Homework_Id = homework_Id;
         Text_Answer = text_Answer;
         File_Answer = file_Answer;

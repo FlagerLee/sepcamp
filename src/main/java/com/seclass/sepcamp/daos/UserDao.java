@@ -20,6 +20,9 @@ public interface UserDao {
     @Select("SELECT * FROM SEPCAMP_USER WHERE USER_ID = #{userId}")
     User getUserByUserId(int  userId);
 
+    @Select("SELECT * FROM SEPCAMP_USER WHERE Term = #{term}")
+    List<User> getUserByTerm(String  term);
+
     @Select("SELECT * FROM SEPCAMP_USER WHERE TEAM_ID = #{teamID}")
     List<User> getUserByTeamId(int  teamID);
 

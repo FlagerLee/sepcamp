@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 public class User implements UserDetails {
+    private int user_id;
     private String email;
     private String name;
     private String student_id;
@@ -22,6 +23,14 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     @Override
@@ -130,7 +139,8 @@ public class User implements UserDetails {
     @Override
     public String toString() {
         return "User{" +
-                "email='" + email + '\'' +
+                "user_id=" + user_id +
+                ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
                 ", student_id='" + student_id + '\'' +
                 ", class_id=" + class_id +

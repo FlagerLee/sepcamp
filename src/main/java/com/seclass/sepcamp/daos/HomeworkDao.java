@@ -18,7 +18,7 @@ public interface HomeworkDao {
             "(#{item.Homework_Id},#{item.User_Id},#{item.Describe_Text},#{item.Start_Time},#{item.End_Time})\n"+
             "</foreach> \n"+
             "</script>")
-    void CreateHomeworkForUsers(@Param(value = "list") List<Homework> list);
+    int CreateHomeworkForUsers(@Param(value = "list") List<Homework> list);
 
     //单用户单作业创建
     @Insert("INSERT INTO SEPCAMP_HOMEWORK(Homework_Id,User_Id, Describe_Text, Start_Time,End_Time) " +
@@ -47,16 +47,12 @@ public interface HomeworkDao {
 
 
     //多用户单作业更新
-    @Update("<script> " +
-            "  <foreach collection= 'list' item= 'item'  separator=','>\n" +
-            "   UPDATE  SEPCAMP_HOMEWORK SET \n"+
-            "   Describe_Text = #{item.Describe_Text}," +
-            "   Start_Time = #{item.Start_Time}," +
-            "   End_Time = #{item.End_Time}\n"+
-            "   WHERE Homework_Id = #{item.Homework_Id} AND User_Id = #{item.User_Id}"+
-            "  </foreach> \n"+
-            "</script>")
-    void UpdateHomeworkForUsers(@Param(value = "list") List<Homework> list);
+    @Update("Update SEPCAMP_HOMEWORK SET " +
+            "   Describe_Text = #{homework.Describe_Text}," +
+            "   Start_Time = #{homework.Start_Time}," +
+            "   End_Time = #{homework.End_Time}\n"+
+            "   WHERE Homework_Id = #{homework.Homework_Id}")
+    void UpdateHomeworkForUsers(Homework homework);
 
 
 
