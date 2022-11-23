@@ -2,7 +2,7 @@ package com.seclass.sepcamp.controllers;
 
 
 import com.seclass.sepcamp.models.Project;
-import com.seclass.sepcamp.models.ResponseCreater;
+import com.seclass.sepcamp.models.Response;
 import com.seclass.sepcamp.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,20 +18,20 @@ public class ProjectController {
     ProjectService projectService;
 
     @PostMapping("/Create")
-    public ResponseCreater Create(String Introduction, int Visible, String Term) {
+    public Response Create(String Introduction, int Visible, String Term) {
         return projectService.CreateNewProject(new Project(Introduction,Visible,Term));
     }
 
     @PostMapping("/Delete")
-    public ResponseCreater Delete(int ProjectId) {
+    public Response Delete(int ProjectId) {
         return projectService.DeleteProject(ProjectId);
     }
     @PostMapping("/ChangeIntroduction")
-    public ResponseCreater ChangeIntroduction( int ProjectId,String Introduction) {
+    public Response ChangeIntroduction(int ProjectId, String Introduction) {
         return projectService.ChangeProjectIntroduction(ProjectId,Introduction);
     }
     @PostMapping("/ChangeVisible")
-    public ResponseCreater ChangeVisible(int ProjectId, int Visible) {
+    public Response ChangeVisible(int ProjectId, int Visible) {
         return projectService.ChangeProjectVisible(ProjectId,Visible);
     }
     @PostMapping("/GetProject")

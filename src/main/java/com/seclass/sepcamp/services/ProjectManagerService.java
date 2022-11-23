@@ -6,8 +6,6 @@ import com.seclass.sepcamp.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,12 +18,12 @@ public class ProjectManagerService {
     TeamMapper teamMapper;
 
 
-    public ResponseCreater CreateProjectManagerForUsers(String DescribeText, int PhaseType, String Term) {
+    public Response CreateProjectManagerForUsers(String DescribeText, int PhaseType, String Term) {
         if(DescribeText.length() <= 0 || DescribeText.length() >= 1000){
-            return new ResponseCreater("描述文本长度不符合要求，应在1~1000个字符之间",false);
+            return new Response("描述文本长度不符合要求，应在1~1000个字符之间",false);
         }
         if(Term.length() <= 0 || Term.length() > 5){
-            return new ResponseCreater("学期格式不符合要求",false);
+            return new Response("学期格式不符合要求",false);
         }
 
         //TODO 统一term格式
@@ -45,9 +43,9 @@ public class ProjectManagerService {
 
         boolean createProjectManagerSuccess = projectManagerDao.CreateProjectManagerForTeams(projectManagerList) >  0;
         if(createProjectManagerSuccess){
-            return new ResponseCreater("提交成功",true);
+            return new Response("提交成功",true);
         }else{
-            return new ResponseCreater("提交失败",true);
+            return new Response("提交失败",true);
         }
     }
 
@@ -59,16 +57,16 @@ public class ProjectManagerService {
         projectManagerDao.UpdateProjectManagerForTeams(DescribeText,PhaseType,ManagerId);
     }
 
-    public ResponseCreater SubmitProjectManagerByUser(String ManagerId,int ProjectId, boolean isSubmitted, String textAnswer, String fileAnswer) {
+    public Response SubmitProjectManagerByUser(String ManagerId, int ProjectId, boolean isSubmitted, String textAnswer, String fileAnswer) {
 
         boolean updateProjectManagerSuccess = projectManagerDao.SubmitProjectManager(
                 new ProjectManager(ManagerId, ProjectId, isSubmitted, textAnswer, fileAnswer)
         ) > 0;
 
         if(updateProjectManagerSuccess){
-            return new ResponseCreater("提交作业成功",true);
+            return new Response("提交作业成功",true);
         }else{
-            return new ResponseCreater("提交作业失败",true);
+            return new Response("提交作业失败",true);
         }
     }
 

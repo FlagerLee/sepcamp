@@ -1,12 +1,12 @@
 package com.seclass.sepcamp.models;
 
-public class ResponseCreater {
+public class Response {
     private  String message;
     private  Boolean success;
 
-    public ResponseCreater() {
+    public Response() {
     }
-    public ResponseCreater(String message, Boolean success) {
+    public Response(String message, Boolean success) {
         this.message = message;
         this.success = success;
     }

@@ -78,6 +78,7 @@ public class Homework {
                 '}';
     }
 
+
     public String getTerm() {
         return Term;
     }

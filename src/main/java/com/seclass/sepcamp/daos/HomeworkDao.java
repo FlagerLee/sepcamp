@@ -13,10 +13,10 @@ public interface HomeworkDao {
 
     //多用户单作业插入
     @Insert("<script> " +
-            "INSERT INTO  SEPCAMP_HOMEWORK VALUES(Homework_Id,User_Id, Describe_Text, Start_Time,End_Time) \n"+
+            "INSERT INTO  SEPCAMP_HOMEWORK(Homework_Id,User_Id, Describe_Text, Start_Time,End_Time,Term) VALUES \n"+
             "  <foreach collection= 'list' item= 'item'  separator=','>\n" +
-            "(#{item.Homework_Id},#{item.User_Id},#{item.Describe_Text},#{item.Start_Time},#{item.End_Time})\n"+
-            "</foreach> \n"+
+            "(#{item.Homework_Id},#{item.User_Id},#{item.Describe_Text},#{item.Start_Time},#{item.End_Time},#{item.Term})\n"+
+            " </foreach> \n"+
             "</script>")
     int CreateHomeworkForUsers(@Param(value = "list") List<Homework> list);
 
@@ -25,34 +25,34 @@ public interface HomeworkDao {
             "VALUE(#{Homework_Id},#{User_Id}, #{Describe_Text}, #{Start_Time}, #{End_Time})")
     int CreateOneHomework(Homework homework);
 
-    @Select("Select *" +
-            "From SEPCAMP_HOMEWORK" +
+    @Select("Select * " +
+            "From SEPCAMP_HOMEWORK " +
             "Where User_Id = #{User_Id}")
     List<Homework>  GetHomeworkByTeamId(int User_Id);
 
-    @Select("Select *" +
-            "From SEPCAMP_HOMEWORK" +
-            "Where Homework_Id = #{Homework_Id},User_Id = #{User_Id} ")
+    @Select("Select * " +
+            "From SEPCAMP_HOMEWORK " +
+            "Where Homework_Id = #{Homework_Id} And User_Id = #{User_Id} ")
     Homework  GetHomeworkByHU(String Homework_Id,int User_Id);
 
-    @Select("Select *" +
-            "From SEPCAMP_HOMEWORK" +
+    @Select("Select * From SEPCAMP_HOMEWORK " +
             "Where Homework_Id = #{Homework_Id}")
     List<Homework>  GetHomeworkByHomeworkId(String Homework_Id);
 
-    @Select("Select Distinct(Homework_Id)" +
-            "From SEPCAMP_HOMEWORK" +
-            "Where Term = #{Term}")
+    @Select("Select Homework_Id,Describe_Text,Start_Time,End_Time\n" +
+            "From SEPCAMP_HOMEWORK\n" +
+            "Where Term = #{Term}\n" +
+            "Group by Homework_Id")
     List<Homework>  GetHomeworkByTerm(String Term);
 
 
     //多用户单作业更新
     @Update("Update SEPCAMP_HOMEWORK SET " +
-            "   Describe_Text = #{homework.Describe_Text}," +
-            "   Start_Time = #{homework.Start_Time}," +
-            "   End_Time = #{homework.End_Time}\n"+
-            "   WHERE Homework_Id = #{homework.Homework_Id}")
-    void UpdateHomeworkForUsers(Homework homework);
+            "   Describe_Text = #{Describe_Text}," +
+            "   Start_Time = #{Start_Time}," +
+            "   End_Time = #{End_Time}\n"+
+            "   WHERE Homework_Id = #{Homework_Id}")
+    int UpdateHomeworkForUsers(Homework homework);
 
 
 

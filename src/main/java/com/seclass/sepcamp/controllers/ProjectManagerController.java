@@ -1,8 +1,7 @@
 package com.seclass.sepcamp.controllers;
 
-import com.seclass.sepcamp.models.Homework;
 import com.seclass.sepcamp.models.ProjectManager;
-import com.seclass.sepcamp.models.ResponseCreater;
+import com.seclass.sepcamp.models.Response;
 import com.seclass.sepcamp.services.ProjectManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +18,7 @@ public class ProjectManagerController {
     ProjectManagerService projectManagerService;
 
     @PostMapping("/CreateProjectManager")
-    public ResponseCreater CreateProjectManager(String DescribeText, int PhaseType, String Term) {
+    public Response CreateProjectManager(String DescribeText, int PhaseType, String Term) {
         return projectManagerService.CreateProjectManagerForUsers(DescribeText,PhaseType,Term);
     }
 
@@ -33,7 +32,7 @@ public class ProjectManagerController {
         projectManagerService.UpdateProjectManager(DescribeText,PhaseType,ManagerId);
     }
     @PostMapping("/SubmitProjectManager")
-    public ResponseCreater SubmitProjectManager(String ManagerId,int ProjectId,boolean IsSubmitted,String TextAnswer,String FileAnswer) {
+    public Response SubmitProjectManager(String ManagerId, int ProjectId, boolean IsSubmitted, String TextAnswer, String FileAnswer) {
         return projectManagerService.SubmitProjectManagerByUser(ManagerId,ProjectId,IsSubmitted,TextAnswer,FileAnswer);
     }
     @PostMapping("/GetOneProjectManagerList")
