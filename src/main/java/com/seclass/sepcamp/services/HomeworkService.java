@@ -36,13 +36,14 @@ public class HomeworkService {
        // thisTerm = Term;
         List<User> userList = userDao.getUserByTerm(Term);
         ArrayList<Homework> homeworkList = new ArrayList<Homework>();
+        long currentTime = System.currentTimeMillis();
         for(int i = 0 ;i < userList.size();i++){
 
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//定义格式，不显示毫秒
             String startTimeStr = df.format(new Timestamp(StartTime));//获取开始时间时间戳
             String endTimeStr =  df.format(new Timestamp(EndTime));//获取结束时间时间戳
 
-            Homework temp = new Homework(df.format(System.currentTimeMillis()),userList.get(i).getUser_id(),DescribeText,startTimeStr,endTimeStr,Term);
+            Homework temp = new Homework(df.format(currentTime),userList.get(i).getUser_id(),DescribeText,startTimeStr,endTimeStr,Term);
             homeworkList.add(temp);
         }
 

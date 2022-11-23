@@ -13,12 +13,13 @@ public class ProjectManager {
     String File_Answer;
     String Term;
     //创建阶段
-    public ProjectManager(String manager_Id,int project_Id,int team_Id, int phase_Type, String describe_Text,String Term) {
+    public ProjectManager(String manager_Id,int project_Id,int team_Id, int phase_Type, String describe_Text,String term) {
         Manager_Id = manager_Id;
         Project_Id = project_Id;
         Team_Id = team_Id;
         Phase_Type = phase_Type;
         Describe_Text = describe_Text;
+        Term = term;
     }
     //修改阶段
     public ProjectManager(String manager_Id,int project_Id, boolean is_Submitted, String text_Answer, String file_Answer) {
@@ -29,7 +30,13 @@ public class ProjectManager {
         File_Answer = file_Answer;
     }
 
-    public ProjectManager(String manager_Id, int project_Id,int team_Id, int phase_Type, boolean is_Submitted, String describe_Text, String last_UpdateTime, String text_Answer, String file_Answer) {
+    public ProjectManager(String manager_Id, int phase_Type, String describe_Text) {
+        Manager_Id = manager_Id;
+        Phase_Type = phase_Type;
+        Describe_Text = describe_Text;
+    }
+
+    public ProjectManager(String manager_Id, int project_Id,int team_Id, int phase_Type, boolean is_Submitted, String describe_Text, String last_UpdateTime, String text_Answer, String file_Answer,String term) {
         Manager_Id = manager_Id;
         Project_Id = project_Id;
         Team_Id = team_Id;
@@ -39,6 +46,7 @@ public class ProjectManager {
         Last_UpdateTime = last_UpdateTime;
         Text_Answer = text_Answer;
         File_Answer = file_Answer;
+        Term = term;
     }
 
     public ProjectManager() {
@@ -47,7 +55,7 @@ public class ProjectManager {
     @Override
     public String toString() {
         return "ProjectManager{" +
-                "Manager_Id=" + Manager_Id +
+                "Manager_Id='" + Manager_Id + '\'' +
                 ", Project_Id=" + Project_Id +
                 ", Team_Id=" + Team_Id +
                 ", Phase_Type=" + Phase_Type +
@@ -56,6 +64,7 @@ public class ProjectManager {
                 ", Last_UpdateTime='" + Last_UpdateTime + '\'' +
                 ", Text_Answer='" + Text_Answer + '\'' +
                 ", File_Answer='" + File_Answer + '\'' +
+                ", Term='" + Term + '\'' +
                 '}';
     }
 
@@ -129,5 +138,13 @@ public class ProjectManager {
 
     public void setFile_Answer(String file_Answer) {
         File_Answer = file_Answer;
+    }
+
+    public String getTerm() {
+        return Term;
+    }
+
+    public void setTerm(String term) {
+        Term = term;
     }
 }
