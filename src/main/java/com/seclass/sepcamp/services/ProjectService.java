@@ -3,6 +3,7 @@ package com.seclass.sepcamp.services;
 import com.seclass.sepcamp.daos.ProjectDao;
 import com.seclass.sepcamp.models.Project;
 import com.seclass.sepcamp.models.Response;
+import com.seclass.sepcamp.utils.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,22 +24,15 @@ public class ProjectService {
         //TODO 可见的几个级别枚举值
 
         boolean result = projectDao.CreateOneProject(project) > 0;
-        if(result){
-            return new Response("创建项目成功",true);
-        }else{
-            return new Response("创建项目失败",false);
-        }
+
+        return ResponseUtils.ResponseMaker(result,"创建项目成功","创建项目失败");
     }
 
 
 
     public Response DeleteProject(int ProjectId){
         boolean result = projectDao.DeleteOneProject(ProjectId) > 0;
-        if(result){
-            return new Response("删除项目成功",true);
-        }else{
-            return new Response("删除项目失败",false);
-        }
+        return ResponseUtils.ResponseMaker(result,"删除项目成功","删除项目失败");
     }
 
     public Response ChangeProjectIntroduction(int ProjectId, String Introduction) {
@@ -47,22 +41,13 @@ public class ProjectService {
             return new Response("项目描述长度不符合要求，请限制在1 ~ 1000个字符", false);
         }
         boolean ChangeSuccess = projectDao.UpdateIntroductionByProjectId(ProjectId, Introduction) > 0;
-        if (ChangeSuccess) {
-            return new Response("修改项目介绍成功", true);
-        } else {
-            return new Response("修改项目介绍失败", false);
-        }
+        return ResponseUtils.ResponseMaker(ChangeSuccess,"修改项目介绍成功","修改项目介绍失败");
     }
 
     public Response ChangeProjectVisible(int ProjectId, int Visible){
 
         boolean ChangeSuccess = projectDao.UpdateVisibleByProjectId(ProjectId,Visible) > 0;
-        if(ChangeSuccess){
-            return new Response("修改项目可见范围成功",true);
-        }else{
-            return new Response("修改项目可见范围失败",false);
-        }
-
+        return ResponseUtils.ResponseMaker(ChangeSuccess,"修改项目可见范围成功","修改项目可见范围失败");
     }
 
     public Project GetProject(int ProjectId){

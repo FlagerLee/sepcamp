@@ -12,6 +12,13 @@ public class Project {
         Term = term;
     }
 
+    public Project(int project_Id ,String introduction, int visible, String term) {
+        Project_Id = project_Id;
+        Introduction = introduction;
+        Visible = visible;
+        Term = term;
+    }
+
     public int getProject_Id() {
         return Project_Id;
     }

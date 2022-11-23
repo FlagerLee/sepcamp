@@ -17,28 +17,28 @@ public class ProjectController {
     @Autowired
     ProjectService projectService;
 
-    @PostMapping("/Create")
+    @PostMapping("/create")
     public Response Create(String Introduction, int Visible, String Term) {
         return projectService.CreateNewProject(new Project(Introduction,Visible,Term));
     }
 
-    @PostMapping("/Delete")
+    @PostMapping("/delete")
     public Response Delete(int ProjectId) {
         return projectService.DeleteProject(ProjectId);
     }
-    @PostMapping("/ChangeIntroduction")
+    @PostMapping("/changeIntroduction")
     public Response ChangeIntroduction(int ProjectId, String Introduction) {
         return projectService.ChangeProjectIntroduction(ProjectId,Introduction);
     }
-    @PostMapping("/ChangeVisible")
+    @PostMapping("/changeVisible")
     public Response ChangeVisible(int ProjectId, int Visible) {
         return projectService.ChangeProjectVisible(ProjectId,Visible);
     }
-    @PostMapping("/GetProject")
+    @PostMapping("/getProject")
     public Project GetProjectById(int ProjectId) {
         return projectService.GetProject(ProjectId);
     }
-    @PostMapping("/GetProjects")
+    @PostMapping("/getProjects")
     public List<Project> GetProjects(int Visible,String Term) {
         return projectService.GetProjects(Visible,Term);
     }

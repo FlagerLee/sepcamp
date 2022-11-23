@@ -15,14 +15,14 @@ public interface ProjectDao {
     @Delete("Delete From SEPCAMP_PROJECT  Where Project_Id = #{Project_Id}")
     int DeleteOneProject(int Project_Id);
 
-    @Select("Select Project_Id,Introduction,Visible,Term" +
-            "From SEPCAMP_PROJECT" +
-            "Where Visible = #{Visible} AND Term = #{Term}")
+    @Select(" Select Project_Id,Introduction,Visible,Term " +
+            " From SEPCAMP_PROJECT "  +
+            " Where Visible = #{Visible} AND Term = #{Term} ")
     List<Project>  GetProjectList(int Visible,String Term);
 
-    @Select("Select Project_Id,Introduction,Visible,Term" +
-            "From SEPCAMP_PROJECT" +
-            "Where Project_Id = #{Project_Id}")
+    @Select(" Select Project_Id,Introduction,Visible,Term " +
+            " From SEPCAMP_PROJECT " +
+            " Where Project_Id = #{Project_Id} ")
     Project  GetProjectById(int Project_Id);
 
     @Update("Update Sepcamp_project Set Introduction = #{Introduction} Where Project_Id = #{Project_Id}")
