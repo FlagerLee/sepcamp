@@ -20,10 +20,12 @@ public class UserService implements UserDetailsService {
     private UserDao userDao;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("call load user by username");
         User user = userDao.getUserByUsername(username);
         if(user == null) {
             throw new UsernameNotFoundException("用户名或密码错误");
         }
+        System.out.println("found");
         return user;
     }
 
