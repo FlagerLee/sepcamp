@@ -1,6 +1,7 @@
 package com.seclass.sepcamp.components;
 
 import com.seclass.sepcamp.configs.RSAConfig;
+import com.seclass.sepcamp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -10,7 +11,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +19,7 @@ import java.util.Collection;
 @Component
 public class CustomUserAuthenticationProvider implements AuthenticationProvider {
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserService userService;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -30,7 +30,7 @@ public class CustomUserAuthenticationProvider implements AuthenticationProvider 
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
         String password = (String) authentication.getCredentials();
-        UserDetails user = userDetailsService.loadUserByUsername(username);
+        UserDetails user = userService.loadUserByUsername(username);
 
         try {
             String plainText = RSAConfig.RSADecrypt(password, private_key);

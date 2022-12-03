@@ -5,6 +5,7 @@ import com.seclass.sepcamp.models.UserRegisterResult;
 import com.seclass.sepcamp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -13,7 +14,7 @@ public class RegisterController {
     private UserService userService;
 
     @PostMapping(value = "register")
-    UserRegisterResult registerRequestView(UserRegister registerInfo) {
+    UserRegisterResult registerRequestView(@RequestBody UserRegister registerInfo) {
         return userService.register(registerInfo);
     }
 }
