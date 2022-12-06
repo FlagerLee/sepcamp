@@ -1,6 +1,7 @@
 package com.seclass.sepcamp.configs;
 
 import com.seclass.sepcamp.components.CustomUserAuthenticationProvider;
+import com.seclass.sepcamp.components.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +10,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -17,6 +21,10 @@ import org.springframework.web.filter.CorsFilter;
 public class SpringSecurityConfig {
     @Autowired
     private CustomUserAuthenticationProvider userAuthProvider;
+    @Autowired
+    private AuthenticationSuccessHandler successHandler;
+    @Autowired
+    private AuthenticationFailureHandler failureHandler;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -48,6 +56,14 @@ public class SpringSecurityConfig {
         http
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        ;
+        // add jwt filter
+        http.addFilterBefore(new JwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
+        // register success and failure handler
+        http
+                .formLogin()
+                .successHandler(successHandler)
+                .failureHandler(failureHandler)
         ;
         return http.build();
     }

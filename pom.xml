@@ -49,6 +49,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson</groupId>
+            <artifactId>jackson-datatype-json-org</artifactId>
+            <version>1.8.0</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/com.auth0/java-jwt -->
         <dependency>
             <groupId>com.auth0</groupId>

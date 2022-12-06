@@ -29,14 +29,13 @@ public class CustomUserAuthenticationProvider implements AuthenticationProvider 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
-        String password = (String) authentication.getCredentials();
+        String password_encrypted = (String) authentication.getCredentials();
         UserDetails user = userService.loadUserByUsername(username);
 
+        String password;
+
         try {
-            String plainText = RSAConfig.RSADecrypt(password, private_key);
-            if(!passwordEncoder.matches(plainText, user.getPassword())) {
-                throw new CredentialsExpiredException("Error password");
-            }
+            password = RSAConfig.RSADecrypt(password_encrypted, private_key);
         }
         catch (Exception e) {
             throw new AuthenticationException("RSA decrypt failed") {
@@ -45,6 +44,11 @@ public class CustomUserAuthenticationProvider implements AuthenticationProvider 
                     return super.getMessage();
                 }
             };
+        }
+
+
+        if(!passwordEncoder.matches(password, user.getPassword())) {
+            throw new CredentialsExpiredException("Error password or username");
         }
 
         Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
