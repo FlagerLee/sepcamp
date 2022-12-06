@@ -25,12 +25,6 @@ public class JwtTokenUtils {
         return res.getClaim("username").asString();
     }
 
-    public Date getExpireDateFromToken(String token) {
-        DecodedJWT res = decode(token);
-        if(res == null) return null;
-        return res.getExpiresAt();
-    }
-
     public String generate(String username, String password) {
         try {
             Date expire_date = new Date(System.currentTimeMillis() + this.expire_date);
@@ -67,6 +61,7 @@ public class JwtTokenUtils {
         DecodedJWT result = decode(token);
         if(result == null) return false;
         return result.getClaim("username").asString().equals(userDetails.getUsername())
-                && result.getClaim("password").asString().equals(userDetails.getPassword());
+                && result.getClaim("password").asString().equals(userDetails.getPassword())
+                && result.getExpiresAt().before(new Date());
     }
 }
