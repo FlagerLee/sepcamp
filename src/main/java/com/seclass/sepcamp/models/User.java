@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 public class User implements UserDetails {
+    private int user_id;
     private String email;
     private String name;
     private String student_id;
@@ -15,10 +16,21 @@ public class User implements UserDetails {
     private String password;
     private short priority;
     private String avatar;
+    private String term;
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     @Override
@@ -114,5 +126,30 @@ public class User implements UserDetails {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "user_id=" + user_id +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", student_id='" + student_id + '\'' +
+                ", class_id=" + class_id +
+                ", team_id=" + team_id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", priority=" + priority +
+                ", avatar='" + avatar + '\'' +
+                ", term='" + term + '\'' +
+                '}';
     }
 }
