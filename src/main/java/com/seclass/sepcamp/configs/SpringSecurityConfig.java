@@ -25,6 +25,8 @@ public class SpringSecurityConfig {
     private AuthenticationSuccessHandler successHandler;
     @Autowired
     private AuthenticationFailureHandler failureHandler;
+    @Autowired
+    private JwtRequestFilter jwtRequestFilter;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -58,7 +60,7 @@ public class SpringSecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         ;
         // add jwt filter
-        http.addFilterBefore(new JwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         // register success and failure handler
         http
                 .formLogin()

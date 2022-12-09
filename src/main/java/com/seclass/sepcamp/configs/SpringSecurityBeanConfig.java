@@ -1,7 +1,7 @@
 package com.seclass.sepcamp.configs;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.seclass.sepcamp.components.JwtTokenUtils;
+import com.seclass.sepcamp.services.JwtTokenUtils;
 import com.seclass.sepcamp.models.User;
 import com.seclass.sepcamp.models.UserLoginResult;
 import org.springframework.beans.factory.annotation.Autowired;

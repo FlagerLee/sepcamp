@@ -1,5 +1,6 @@
 package com.seclass.sepcamp.components;
 
+import com.seclass.sepcamp.services.JwtTokenUtils;
 import com.seclass.sepcamp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,14 +18,22 @@ import java.io.IOException;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
-    @Autowired
+
     private JwtTokenUtils tokenUtils;
-    @Autowired
     private UserService userService;
+
+    @Autowired
+    private void setTokenUtils(JwtTokenUtils jwtTokenUtils) {
+        this.tokenUtils = jwtTokenUtils;
+    }
+    @Autowired
+    private void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         final String requestTokenHeader = request.getHeader("Authorization");
-
         String username = null;
         String jwtToken = null;
         // JWT Token is in the form "Bearer token". Remove Bearer word and get
