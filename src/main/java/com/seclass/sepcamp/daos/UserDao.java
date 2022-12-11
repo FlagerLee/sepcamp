@@ -31,7 +31,10 @@ public interface UserDao {
     int updateTeamIdForUser(int  userId,int teamId);
 
 
-    @Insert("INSERT INTO SEPCAMP_USER(EMAIL, USERNAME, PASSWORD, PRIORITY, AVATAR) " +
-            "VALUE(#{email}, #{username}, #{password}, 1, \"IGNORE\")")
+    @Insert("INSERT INTO SEPCAMP_USER(EMAIL, USERNAME, PASSWORD, PRIORITY, AVATAR, TERM, ENABLED) " +
+            "VALUE(#{email}, #{username}, #{password}, #{priority}, \"IGNORE\", \"NONE\", false)")
     int register(UserRegister register);
+
+    @Update("UPDATE SEPCAMP_USER SET ENABLED = true WHERE EMAIL = #{email}")
+    int setVerified(String email);
 }

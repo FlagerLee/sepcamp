@@ -4,6 +4,8 @@ public class UserRegister {
     private String email;
     private String username;
     private String password;
+    private String site_url;
+    private int priority;
 
     public String getEmail() {
         return email;
@@ -27,5 +29,13 @@ public class UserRegister {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getSite_url() {
+        return site_url;
+    }
+
+    public int getPriority() {
+        return priority;
     }
 }
