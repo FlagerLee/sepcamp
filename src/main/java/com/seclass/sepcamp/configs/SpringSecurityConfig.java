@@ -42,7 +42,7 @@ public class SpringSecurityConfig {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/dologin", "/register", "/dologout")
+                .antMatchers("/dologin", "/register", "/register/verify")
                 .permitAll()
                 .and()
                 .authorizeRequests()

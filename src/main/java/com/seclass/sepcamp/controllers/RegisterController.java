@@ -17,8 +17,8 @@ public class RegisterController {
         return userService.register(registerInfo);
     }
 
-    @GetMapping(value = "verify")
-    boolean registerVerificationView(String verificationToken) {
-        return userService.registerVerify(verificationToken);
+    @GetMapping(value = "/verify")
+    boolean registerVerificationView(String code) {
+        return userService.registerVerify(code);
     }
 }

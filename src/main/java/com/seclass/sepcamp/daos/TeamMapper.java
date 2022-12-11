@@ -1,15 +1,11 @@
 package com.seclass.sepcamp.daos;
 
 import com.seclass.sepcamp.models.Team;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-@Repository
+@Mapper
 public interface TeamMapper {
 
     @Select("select * from sepcamp_team where team_id = #{teamId}")
@@ -27,16 +23,22 @@ public interface TeamMapper {
     @Insert("insert into sepcamp_team(TEAM_NAME,LEADER,PROJECT_ID,TERM) values(#{Team_name},#{Leader},#{Project_id},#{Term})")
     int CreateTeam(Team team);
 
+    @Delete("delete from sepcamp_team where team_id = #{teamId}")
     int DeleteOneTeam(int teamId);
 
+    @Update("update sepcamp_team set TEAM_NAME =#{teamName}  where team_id = #{teamId}")
     int UpdateTeamNameById(String teamName,int teamId);
 
+    @Update("update sepcamp_team set LEADER =#{leaderId}  where team_id = #{teamId}")
     int UpdateTeamLeaderById(int leaderId,int teamId);
 
+    @Update("update sepcamp_team set PROJECT_ID =#{projectId}  where team_id = #{teamId}")
     int UpdateTeamProjectById(int  projectId,int teamId);
 
+    @Update("update sepcamp_team set TERM =#{termId}  where team_id = #{teamId}")
     int UpdateTeamTermById(String termId,int teamId);
 
+    @Update("update sepcamp_team set TEAM_NAME =#{TeamName},LEADER =#{Leader},PROJECT_ID =#{ProjectId},TERM =#{Term}  where team_id = #{TeamId}")
     int UpdateTeamById(Team team);
 
 }

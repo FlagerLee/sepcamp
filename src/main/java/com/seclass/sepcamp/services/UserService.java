@@ -50,6 +50,9 @@ public class UserService implements UserDetailsService {
         if(user == null) {
             throw new UsernameNotFoundException("邮箱或密码错误");
         }
+        if(!user.getEnabled()) {
+            throw new UsernameNotFoundException("用户未验证");
+        }
         return user;
     }
 
@@ -57,6 +60,9 @@ public class UserService implements UserDetailsService {
         User user = userDao.getUserByEmail(email);
         if(user == null) {
             throw new UsernameNotFoundException("邮箱或密码错误");
+        }
+        if(!user.getEnabled()) {
+            throw new UsernameNotFoundException("用户未验证");
         }
         return user;
     }
@@ -73,6 +79,7 @@ public class UserService implements UserDetailsService {
         }
         String password = register.getPassword();
         try {
+            assert(register.getPriority() <= 2 && register.getPriority() >= 0);
             String plainText = RSAConfig.RSADecrypt(password, private_key);
             register.setPassword(Encrypt(plainText));
 
@@ -102,8 +109,10 @@ public class UserService implements UserDetailsService {
         helper.setTo(email);
         helper.setSubject(subject);
 
-        String content = "新用户" + username + "您好，请点击下方链接以完成注册：<br>"
-                + site_url + "/verity?code=" + generateVerificationToken(email);
+        String verify_url = site_url + "register/verify?code=" + generateVerificationToken(email);
+
+        String content = "新用户" + username + "您好，请点击下方链接以完成注册：<br><a href="
+                + verify_url + ">" + verify_url + "</a>";
 
         helper.setText(content, true);
 
@@ -136,10 +145,9 @@ public class UserService implements UserDetailsService {
             DecodedJWT result = verifier.verify(token);
             if(result.getExpiresAt().before(new Date())) return false;
             String email = result.getClaim("email").asString();
-            User user = userDao.getUserByUsername(email);
-            if(!user.getEnabled()) return false; // should be unverified
-            userDao.setVerified(email);
-            return true;
+            User user = userDao.getUserByEmail(email);
+            if(user == null || user.getEnabled()) return false; // should be unverified
+            return userDao.setVerified(email) != 0;
         }
         catch (Exception e) {
             e.printStackTrace();
