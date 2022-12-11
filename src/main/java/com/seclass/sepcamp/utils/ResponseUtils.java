@@ -1,15 +1,19 @@
 package com.seclass.sepcamp.utils;
 
-import com.google.gson.Gson;
 import com.seclass.sepcamp.models.Response;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import java.util.LinkedHashMap;
 
 public class ResponseUtils {
     public  static String MapToString(LinkedHashMap<String,String> resultMap){
-        Gson gson = new Gson();
-        String jsonStr = gson.toJson(resultMap);
-        return jsonStr;
+        ObjectMapper m = new ObjectMapper();
+        try {
+            return m.writeValueAsString(resultMap);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     public  static Response ResponseMaker(boolean IsSuccess, String SuccessString, String FalseString){
         if(IsSuccess){

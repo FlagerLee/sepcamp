@@ -17,6 +17,7 @@ public class User implements UserDetails {
     private short priority;
     private String avatar;
     private String term;
+    private boolean enabled;
 
 
 
@@ -150,6 +151,14 @@ public class User implements UserDetails {
                 ", priority=" + priority +
                 ", avatar='" + avatar + '\'' +
                 ", term='" + term + '\'' +
+                ", enabled='" + enabled + '\'' +
                 '}';
+    }
+
+    public boolean getEnabled() {
+        return this.enabled;
+    }
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }
