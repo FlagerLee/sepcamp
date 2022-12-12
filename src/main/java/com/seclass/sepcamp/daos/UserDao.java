@@ -32,7 +32,7 @@ public interface UserDao {
 
 
     @Insert("INSERT INTO SEPCAMP_USER(EMAIL, USERNAME, PASSWORD, PRIORITY, AVATAR, TERM, ENABLED) " +
-            "VALUE(#{email}, #{username}, #{password}, #{priority}, \"IGNORE\", \"NONE\", false)")
+            "VALUE(#{email}, #{username}, #{password}, #{priority}, \"IGNORE\", \"20222\", false)")
     int register(UserRegister register);
 
     @Update("UPDATE SEPCAMP_USER SET ENABLED = true WHERE EMAIL = #{email}")

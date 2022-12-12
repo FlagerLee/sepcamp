@@ -35,6 +35,7 @@ public class HomeworkService {
        // String thisTerm = "20222";
        // thisTerm = Term;
         List<User> userList = userDao.getUserByTerm(Term);
+
         ArrayList<Homework> homeworkList = new ArrayList<Homework>();
         long currentTime = System.currentTimeMillis();
         for(int i = 0 ;i < userList.size();i++){
@@ -47,7 +48,11 @@ public class HomeworkService {
             homeworkList.add(temp);
         }
 
-        boolean createHomeworkSuccess = homeworkDao.CreateHomeworkForUsers(homeworkList) >  0;
+        boolean createHomeworkSuccess = false;
+        if(homeworkList.size() > 0 ){
+             createHomeworkSuccess = homeworkDao.CreateHomeworkForUsers(homeworkList) >  0;
+        }
+
 
         return ResponseUtils.ResponseMaker(createHomeworkSuccess,"创建作业成功","创建作业失败");
 

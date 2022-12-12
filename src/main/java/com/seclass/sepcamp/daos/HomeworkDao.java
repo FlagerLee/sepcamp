@@ -15,7 +15,7 @@ public interface HomeworkDao {
     @Insert("<script> " +
             "INSERT INTO  SEPCAMP_HOMEWORK(Homework_Id,User_Id, Describe_Text, Start_Time,End_Time,Term) VALUES \n"+
             "  <foreach collection= 'list' item= 'item'  separator=','>\n" +
-            "(#{item.Homework_Id},#{item.User_Id},#{item.Describe_Text},#{item.Start_Time},#{item.End_Time},#{item.Term})\n"+
+            "(#{item.Homework_Id},#{item.User_Id},#{item.Describe_Text},#{item.Start_Time},#{item.End_Time},#{item.Term}) \n"+
             " </foreach> \n"+
             "</script>")
     int CreateHomeworkForUsers(@Param(value = "list") List<Homework> list);
