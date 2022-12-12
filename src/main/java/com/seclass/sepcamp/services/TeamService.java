@@ -1,6 +1,6 @@
 package com.seclass.sepcamp.services;
 
-import com.seclass.sepcamp.daos.TeamMapper;
+import com.seclass.sepcamp.daos.TeamDao;
 import com.seclass.sepcamp.daos.UserDao;
 import com.seclass.sepcamp.models.Response;
 import com.seclass.sepcamp.models.Team;
@@ -14,17 +14,17 @@ import java.util.List;
 @Service
 public class TeamService {
     @Autowired
-    private TeamMapper teamMapper;
+    private TeamDao teamDao;
     @Autowired
     private UserDao userDao;
     public Team GetTeamById(int teamId){
 
-        return teamMapper.GetOneTeam(teamId);
+        return teamDao.GetOneTeam(teamId);
     }
 
     public List<Team> GetAllTeams(){
 
-        return teamMapper.GetAllTeams();
+        return teamDao.GetAllTeams();
     }
     public synchronized Response CreateTeam(Team t){
         //先查询该用户是否具有队伍
@@ -49,13 +49,13 @@ public class TeamService {
         }
 
 
-        Boolean createResult = teamMapper.CreateTeam(t) > 0;
+        Boolean createResult = teamDao.CreateTeam(t) > 0;
         if(!createResult){
             return new Response("创建队伍失败",false);
         }
         //通过teamname 反查team id
         boolean updateUserSuccess = false;
-        List<Team> teamLists  = teamMapper.GetTeamByTeamname(t.getTeam_name());
+        List<Team> teamLists  = teamDao.GetTeamByTeamname(t.getTeam_name());
         System.out.println(teamLists);
         for(int i = 0 ;i < teamLists.size();i++){
             Team temp = teamLists.get(i);
@@ -72,19 +72,19 @@ public class TeamService {
     }
 
     public Response UpdateTeamNameById(String teamName, int teamId) {
-        boolean updateSuccess = teamMapper.UpdateTeamNameById(teamName, teamId) > 0;
+        boolean updateSuccess = teamDao.UpdateTeamNameById(teamName, teamId) > 0;
         return ResponseUtils.ResponseMaker(updateSuccess,"修改队伍名字成功","修改队伍名字失败");
     }
 
     public Response UpdateTeamLeaderById(int leaderId, int teamId) {
 
-        boolean updateSuccess = teamMapper.UpdateTeamLeaderById(leaderId, teamId) > 0;
+        boolean updateSuccess = teamDao.UpdateTeamLeaderById(leaderId, teamId) > 0;
         return ResponseUtils.ResponseMaker(updateSuccess,"修改队伍Leader成功","修改队伍Leader失败");
     }
 
     public Response UpdateTeamProjectById(int  projectId, int teamId) {
 
-        boolean updateSuccess =  teamMapper.UpdateTeamProjectById(projectId, teamId) > 0;
+        boolean updateSuccess =  teamDao.UpdateTeamProjectById(projectId, teamId) > 0;
         return ResponseUtils.ResponseMaker(updateSuccess,"修改队伍项目成功","修改队伍项目失败");
     }
 
@@ -105,7 +105,7 @@ public class TeamService {
             //若此队伍中没有人，删除此队伍
             List<User> ThisTeamMembers = userDao.getUserByTeamId(teamId);
             if (ThisTeamMembers.size() == 0){
-                teamMapper.DeleteOneTeam(teamId);
+                teamDao.DeleteOneTeam(teamId);
             }
             return new Response("退出队伍成功",true);
         }else{

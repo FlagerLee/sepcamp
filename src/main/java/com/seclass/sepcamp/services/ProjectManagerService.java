@@ -1,13 +1,12 @@
 package com.seclass.sepcamp.services;
 
 import com.seclass.sepcamp.daos.ProjectManagerDao;
-import com.seclass.sepcamp.daos.TeamMapper;
+import com.seclass.sepcamp.daos.TeamDao;
 import com.seclass.sepcamp.models.*;
 import com.seclass.sepcamp.utils.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,7 @@ public class ProjectManagerService {
     @Autowired
     ProjectManagerDao projectManagerDao;
     @Autowired
-    TeamMapper teamMapper;
+    TeamDao teamDao;
 
 
     public Response CreateProjectManagerForUsers(String DescribeText, int PhaseType, String Term) {
@@ -31,7 +30,7 @@ public class ProjectManagerService {
 
         //TODO 统一term格式
         // String thisTerm = "20222";
-        List<Team> teamList = teamMapper.GetTeamByTerm(Term);
+        List<Team> teamList = teamDao.GetTeamByTerm(Term);
         ArrayList<ProjectManager> projectManagerList = new ArrayList<ProjectManager>();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//定义格式，不显示毫秒
         long currentTime = System.currentTimeMillis();
