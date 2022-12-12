@@ -4,6 +4,7 @@ public class UserLoginResult {
     private boolean success;
     private String token;
     private String message;
+    private int priority;
 
     public boolean isSuccess() {
         return success;
@@ -27,5 +28,13 @@ public class UserLoginResult {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 }

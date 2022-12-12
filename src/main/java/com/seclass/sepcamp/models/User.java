@@ -1,8 +1,10 @@
 package com.seclass.sepcamp.models;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class User implements UserDetails {
@@ -23,7 +25,10 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        ArrayList<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("student"));
+        if(this.priority != 0) authorities.add(new SimpleGrantedAuthority("teacher"));
+        return authorities;
     }
 
     public int getUser_id() {
