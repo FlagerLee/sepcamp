@@ -20,6 +20,9 @@ public interface ProjectDao {
             " Where Visible = #{Visible} AND Term = #{Term} ")
     List<Project>  GetProjectList(int Visible,String Term);
 
+    @Select("Select Project_Id from sepcamp_project where project_name = #{project_name}")
+    int GetProjectIdByProjectName(String project_name);
+
     @Select(" Select Project_Id,Introduction,Project_name,Visible,Term " +
             " From SEPCAMP_PROJECT " +
             " Where Project_Id = #{Project_Id} ")

@@ -28,7 +28,9 @@ public class ProjectService {
         return ResponseUtils.ResponseMaker(result,"创建项目成功","创建项目失败");
     }
 
-
+    public int GetProjectIdByProjectName(String project_name) {
+        return projectDao.GetProjectIdByProjectName(project_name);
+    }
 
     public Response DeleteProject(int ProjectId){
         boolean result = projectDao.DeleteOneProject(ProjectId) > 0;

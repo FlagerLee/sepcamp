@@ -6,9 +6,11 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.seclass.sepcamp.configs.RSAConfig;
 import com.seclass.sepcamp.daos.UserDao;
+import com.seclass.sepcamp.models.Response;
 import com.seclass.sepcamp.models.User;
 import com.seclass.sepcamp.models.UserRegister;
 import com.seclass.sepcamp.models.UserRegisterResult;
+import com.seclass.sepcamp.utils.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -178,5 +180,10 @@ public class UserService implements UserDetailsService {
 
     public List<User> getTeamedUser() {
         return userDao.getTeamedUser();
+    }
+
+    public Response setTeam(int team_id, int user_id) {
+        boolean success = userDao.setTeam(team_id, user_id) > 0;
+        return ResponseUtils.ResponseMaker(success,"设置成员小组成功","设置成员小组失败");
     }
 }
