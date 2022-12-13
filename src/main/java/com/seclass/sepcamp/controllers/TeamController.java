@@ -182,16 +182,20 @@ public class TeamController {
             teamInfo.setIntroduction(team.getIntroduction());
             teamInfo.setTeam_members(1);
             teamInfoMap.put(team.getTeam_id(), teamInfo);
+
         }
         List<User> teamed_users = userService.getTeamedUser();
+
         for(User user: teamed_users) {
             int team_id = user.getTeam_id();
-            TeamInfo teamInfo = teamInfoMap.get(team_id);
-            if(teamInfo.getTeam_leader_id() == user.getUser_id()) {
-                teamInfo.setTeam_leader(user.getUsername());
-            }
-            else {
-                teamInfo.setTeam_members(teamInfo.getTeam_members());
+            if(team_id != -1){
+                TeamInfo teamInfo = teamInfoMap.get(team_id);
+                if(teamInfo.getTeam_leader_id() == user.getUser_id()) {
+                    teamInfo.setTeam_leader(user.getUsername());
+                }
+                else {
+                    teamInfo.setTeam_members(teamInfo.getTeam_members());
+                }
             }
         }
         for(Map.Entry<Integer, TeamInfo> entry: teamInfoMap.entrySet()) {
