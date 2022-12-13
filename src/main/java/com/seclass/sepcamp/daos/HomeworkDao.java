@@ -35,11 +35,14 @@ public interface HomeworkDao {
             "Where Homework_Id = #{Homework_Id} And User_Id = #{User_Id} ")
     Homework  GetHomeworkByHU(String Homework_Id,int User_Id);
 
+    @Select("Select * From SEPCAMP_HOMEWORK Where User_Id = #{userId}")
+    List<Homework> GetHomeworkByUser(int userId);
+
     @Select("Select * From SEPCAMP_HOMEWORK " +
             "Where Homework_Id = #{Homework_Id}")
     List<Homework>  GetHomeworkByHomeworkId(String Homework_Id);
 
-    @Select("Select Homework_Id,Describe_Text,Start_Time,End_Time,Homework_Type\n" +
+    @Select("Select distinct Homework_Id,Describe_Text,Start_Time,End_Time,Homework_Type\n" +
             "From SEPCAMP_HOMEWORK\n" +
             "Where Term = #{Term}")
     List<Homework>  GetHomeworkByTerm(String Term);
@@ -65,4 +68,6 @@ public interface HomeworkDao {
     @Delete("Delete From SEPCAMP_HOMEWORK  Where Homework_Id = #{Homework_Id}")
     int DeleteOneHomework(String Homework_Id);
 
+    @Update("Update SEPCAMP_HOMEWORK Set Score = #{Score} Where Homework_Id = #{Homework_Id} and User_Id = #{User_Id}")
+    int UpdateScore(String Homework_Id, int User_Id, int Score);
 }

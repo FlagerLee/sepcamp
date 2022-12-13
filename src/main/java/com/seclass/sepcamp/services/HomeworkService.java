@@ -76,15 +76,15 @@ public class HomeworkService {
     }
 
 
-    public Response SubmitHomeworkByUser(String HomeworkId, int UserId, boolean IsSubmitted, String TextAnswer, String FileAnswer) {
+    public Response SubmitHomeworkByUser(String HomeworkId, int UserId, String TextAnswer, String FileAnswer) {
 
-        boolean updateHomeworkSuccess = homeworkDao.UpdateHomework(new Homework(HomeworkId, UserId, IsSubmitted, TextAnswer, FileAnswer)) > 0;
+        boolean updateHomeworkSuccess = homeworkDao.UpdateHomework(new Homework(HomeworkId, UserId, true, TextAnswer, FileAnswer)) > 0;
         return ResponseUtils.ResponseMaker(updateHomeworkSuccess,"提交作业成功","提交作业失败");
 
     }
 
 
-    public List<Homework> GetOneHomeworkList(String HomeworkId) {
+    public List<Homework> GetOneHomeworkListById(String HomeworkId) {
         return homeworkDao.GetHomeworkByHomeworkId(HomeworkId);
     }
 
@@ -96,5 +96,12 @@ public class HomeworkService {
         return homeworkDao.GetHomeworkByHU(HomeworkId,UserId);
     }
 
+    public List<Homework> GetOneHomeworkList(int userId) {
+        return homeworkDao.GetHomeworkByUser(userId);
+    }
 
+    public Response UpdateScore(String HomeworkId, int UserId, int score) {
+        boolean updateScoreSuccess = homeworkDao.UpdateScore(HomeworkId, UserId, score) > 0;
+        return ResponseUtils.ResponseMaker(updateScoreSuccess, "上传分数成功", "上传分数失败");
+    }
 }

@@ -23,9 +23,7 @@ import org.springframework.stereotype.Service;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -163,5 +161,13 @@ public class UserService implements UserDetailsService {
 
     private String Encrypt(String password) {
         return passwordEncoder.encode(password);
+    }
+
+    public List<User> getUserByIds(List<Integer> userId) {
+        List<User> userList = new ArrayList<>();
+        for(int id: userId) {
+            userList.add(userDao.getUserByUserId(id));
+        }
+        return userList;
     }
 }

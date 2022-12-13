@@ -9,8 +9,9 @@ CREATE TABLE IF NOT EXISTS SEPCAMP_HOMEWORK
     End_Time        TIMESTAMP           NOT NULL COMMENT '作业结束时间',
     Text_Answer     VARCHAR(1000)       COMMENT '作业文本',
     File_Answer     VARCHAR(200)        COMMENT '作业文件',
-    TERM            CHARACTER(5)    NOT NULL COMMENT '学期',
+    TERM            CHARACTER(5)        NOT NULL COMMENT '学期',
     Homework_Type   INTEGER             NOT NULL COMMENT '作业类型：随堂作业/课后作业',
+    Score           INTEGER             COMMENT '分数',
     PRIMARY KEY(Homework_Id,User_Id)
 )
     CHARACTER SET = utf8

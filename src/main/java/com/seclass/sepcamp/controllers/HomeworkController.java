@@ -2,13 +2,16 @@ package com.seclass.sepcamp.controllers;
 
 import com.seclass.sepcamp.models.Homework;
 import com.seclass.sepcamp.models.Response;
+import com.seclass.sepcamp.models.User;
 import com.seclass.sepcamp.services.HomeworkService;
+import com.seclass.sepcamp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -16,6 +19,8 @@ import java.util.List;
 public class HomeworkController {
     @Autowired
     public HomeworkService homeworkService;
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/create")
     //public Response CreateHomework(String DescribeText,long StartTime,long EndTime,String Term,short HomeworkType) {
@@ -41,21 +46,47 @@ public class HomeworkController {
         return homeworkService.UpdateHomework(DescribeText,StartTime,EndTime,HomeworkId);
     }
     @PostMapping("/submit")
-    public Response SubmitHomework(String HomeworkId, int UserId, boolean IsSubmitted, String TextAnswer, String FileAnswer) {
-        return homeworkService.SubmitHomeworkByUser(HomeworkId,UserId,IsSubmitted,TextAnswer,FileAnswer);
+    public Response SubmitHomework(@RequestBody Homework homework, Principal principal) {
+        String username = principal.getName();
+        User user = (User) userService.loadUserByUsername(username);
+        return homeworkService.SubmitHomeworkByUser(
+                homework.getHomework_Id(),
+                user.getUser_id(),
+                homework.getText_Answer(),
+                homework.getFile_Answer()
+        );
     }
     @PostMapping("/getOneList")
-    public List<Homework> GetOneHomeworkList(@RequestBody Homework homework) {
-        return homeworkService.GetOneHomeworkList(homework.getHomework_Id());
+    public List<Homework> GetOneHomeworkListById(@RequestBody Homework homework) {
+        return homeworkService.GetOneHomeworkListById(homework.getHomework_Id());
     }
     @PostMapping("/getAllList")
     public List<Homework> GetAllHomeworkList(@RequestBody Homework homework) {
         return homeworkService.GetAllHomeworkList(homework.getTerm());
     }
     @PostMapping("/getOne")
-    public Homework GetOneHomework(String HomeworkId,int UserId) {
-        return homeworkService.GetOneHomework(HomeworkId,UserId);
+    public Homework GetOneHomework(@RequestBody Homework homework, Principal principal) {
+        String username = principal.getName();
+        User user = (User) userService.loadUserByUsername(username);
+        return homeworkService.GetOneHomework(homework.getHomework_Id(), user.getUser_id());
+    }
+    @PostMapping("/getOneWithUser")
+    public Homework GetOneHomeworkWithUser(@RequestBody Homework homework) {
+        return homeworkService.GetOneHomework(homework.getHomework_Id(), homework.getUser_Id());
+    }
+    //public Homework GetOneHomework(String HomeworkId,int UserId) {
+    //    return homeworkService.GetOneHomework(HomeworkId,UserId);
+    //}
+
+    @PostMapping("/getOneUserList")
+    public List<Homework> GetOneHomeworkList(Principal principal) {
+        String username = principal.getName();
+        User user = (User) userService.loadUserByUsername(username);
+        return homeworkService.GetOneHomeworkList(user.getUser_id());
     }
 
-
+    @PostMapping("/updateScore")
+    public Response UpdateScore(@RequestBody Homework homework) {
+        return homeworkService.UpdateScore(homework.getHomework_Id(), homework.getUser_Id(), homework.getScore());
+    }
 }

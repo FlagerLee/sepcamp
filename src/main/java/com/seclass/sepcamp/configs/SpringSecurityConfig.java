@@ -47,6 +47,7 @@ public class SpringSecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/homework/**").hasAuthority("student")
                 .antMatchers("/homework/update", "/homework/create", "/homework/delete").hasAuthority("teacher")
+                .antMatchers("/userinfo/**").hasAuthority("teacher")
                 .antMatchers("/dologin", "/register", "/register/verify").permitAll()
                 .anyRequest().authenticated()
         ;

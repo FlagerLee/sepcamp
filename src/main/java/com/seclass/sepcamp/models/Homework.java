@@ -14,6 +14,7 @@ public class Homework {
     String File_Answer;
     String Term;
     short Homework_Type;
+    int Score;
 
     public short getHomework_Type() {
         return Homework_Type;
@@ -167,5 +168,13 @@ public class Homework {
 
     public void setFile_Answer(String file_Answer) {
         File_Answer = file_Answer;
+    }
+
+    public int getScore() {
+        return Score;
+    }
+
+    public void setScore(int score) {
+        Score = score;
     }
 }
