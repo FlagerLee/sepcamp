@@ -17,12 +17,6 @@ public class HomeworkController {
     @Autowired
     public HomeworkService homeworkService;
 
-    @PostMapping("")
-    public boolean test() {
-        System.out.println("test");
-        return true;
-    }
-
     @PostMapping("/create")
     //public Response CreateHomework(String DescribeText,long StartTime,long EndTime,String Term,short HomeworkType) {
     //    return homeworkService.CreateHomeworkForUsers(DescribeText,StartTime,EndTime,Term,HomeworkType);
@@ -51,8 +45,8 @@ public class HomeworkController {
         return homeworkService.SubmitHomeworkByUser(HomeworkId,UserId,IsSubmitted,TextAnswer,FileAnswer);
     }
     @PostMapping("/getOneList")
-    public List<Homework> GetOneHomeworkList(String HomeworkId) {
-        return homeworkService.GetOneHomeworkList(HomeworkId);
+    public List<Homework> GetOneHomeworkList(@RequestBody Homework homework) {
+        return homeworkService.GetOneHomeworkList(homework.getHomework_Id());
     }
     @PostMapping("/getAllList")
     public List<Homework> GetAllHomeworkList(@RequestBody Homework homework) {
