@@ -6,6 +6,7 @@ import com.seclass.sepcamp.models.Response;
 import com.seclass.sepcamp.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,8 +36,8 @@ public class ProjectController {
         return projectService.ChangeProjectVisible(ProjectId,Visible);
     }
     @PostMapping("/getProject")
-    public Project GetProjectById(int ProjectId) {
-        return projectService.GetProject(ProjectId);
+    public Project GetProjectById(@RequestBody Project project) {
+        return projectService.GetProject(project.getProject_id());
     }
     @PostMapping("/getProjects")
     public List<Project> GetProjects(int Visible,String Term) {

@@ -1,5 +1,6 @@
 package com.seclass.sepcamp.controllers;
 
+import com.seclass.sepcamp.models.Project;
 import com.seclass.sepcamp.models.Response;
 import com.seclass.sepcamp.models.Team;
 import com.seclass.sepcamp.models.User;
@@ -17,9 +18,11 @@ public class TeamController {
     public TeamService teamService;
 
     @PostMapping("getTeamById")
-    public String GetTeamById(@RequestBody Team team){
+    public Team GetTeamById(@RequestBody Team team){
         System.out.println(team.getTeam_id());
-        return teamService.GetTeamById(team.getTeam_id()).toString();
+        Team result = teamService.GetTeamById(team.getTeam_id());
+        System.out.println(result);
+        return result;
     }
 
     @PostMapping("getAllTeam")
@@ -73,19 +76,12 @@ public class TeamController {
             this.names = names;
         }
 
-        @Override
-        public String toString() {
-            return "UserList{" +
-                    "ids=" + ids +
-                    ", names=" + names +
-                    '}';
-        }
     }
 
     @PostMapping("GetTeamMember")
-    public UserList GetTeamMember(int teamId) {
+    public UserList GetTeamMember(@RequestBody Project project) {
 
-        List<User> list = teamService.GetTeamMember(teamId);
+        List<User> list = teamService.GetTeamMember(project.getProject_id());
         UserList userlist = new UserList();
         userlist.ids = new ArrayList<>();
         userlist.names = new ArrayList<>();
@@ -93,14 +89,14 @@ public class TeamController {
             userlist.ids.add(list.get(i).getUser_id());
             userlist.names.add(list.get(i).getName());
         }
-
+        System.out.println(userlist);
         return userlist;
     }
 
     @PostMapping("DropOutOfLine")
-    public Response DropOutOfLine(int userId)
+    public Response DropOutOfLine(@RequestBody User user)
     {
-        return teamService.DropOutOfLine(userId);
+        return teamService.DropOutOfLine(user.getUser_id());
 
     }
 
