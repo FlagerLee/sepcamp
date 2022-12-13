@@ -175,4 +175,8 @@ public class UserService implements UserDetailsService {
     public User getUserInformation(int userId) {
         return userDao.getUserByUserId(userId);
     }
+
+    public List<User> getTeamedUser() {
+        return userDao.getTeamedUser();
+    }
 }

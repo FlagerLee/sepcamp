@@ -37,4 +37,7 @@ public interface UserDao {
 
     @Update("UPDATE SEPCAMP_USER SET ENABLED = true WHERE EMAIL = #{email}")
     int setVerified(String email);
+
+    @Select("SELECT user_id, username, team_id from sepcamp_user where team_id is not null")
+    List<User> getTeamedUser();
 }

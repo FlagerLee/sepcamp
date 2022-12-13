@@ -6,6 +6,7 @@ public class Team {
     int Leader;
     int Project_id;
     String Term;
+    String Introduction;
 
     public Team(int teamId, String teamName, int leader, int projectId, String term) {
         Team_id = teamId;
@@ -85,5 +86,13 @@ public class Team {
 
     public void setTerm(String term) {
         Term = term;
+    }
+
+    public String getIntroduction() {
+        return Introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        Introduction = introduction;
     }
 }
