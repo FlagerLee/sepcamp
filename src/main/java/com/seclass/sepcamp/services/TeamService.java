@@ -71,6 +71,10 @@ public class TeamService {
 
     }
 
+    public int GetTeamIdByTeamName(String team_name) {
+        return teamDao.GetTeamByTeamname(team_name).get(0).getTeam_id();
+    }
+
     public Response UpdateTeamNameById(String teamName, int teamId) {
         boolean updateSuccess = teamDao.UpdateTeamNameById(teamName, teamId) > 0;
         return ResponseUtils.ResponseMaker(updateSuccess,"修改队伍名字成功","修改队伍名字失败");
@@ -85,6 +89,12 @@ public class TeamService {
     public Response UpdateTeamProjectById(int  projectId, int teamId) {
 
         boolean updateSuccess =  teamDao.UpdateTeamProjectById(projectId, teamId) > 0;
+        return ResponseUtils.ResponseMaker(updateSuccess,"修改队伍项目成功","修改队伍项目失败");
+    }
+
+    public Response UpdateTeamInformation(Team t){
+
+        boolean updateSuccess =  teamDao.UpdateTeamById(t) > 0;
         return ResponseUtils.ResponseMaker(updateSuccess,"修改队伍项目成功","修改队伍项目失败");
     }
 
@@ -111,6 +121,10 @@ public class TeamService {
         }else{
             return new Response("退出队伍失败",false);
         }
+    }
+
+    public List<User> GetTeamMember(int teamId){
+        return userDao.getUserByTeamId(teamId);
     }
 
 

@@ -1,5 +1,6 @@
 package com.seclass.sepcamp.controllers;
 
+import com.seclass.sepcamp.models.Response;
 import com.seclass.sepcamp.models.User;
 import com.seclass.sepcamp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,4 +34,18 @@ public class UserController {
     //public void test(HttpEntity<String> httpEntity) {
     //    System.out.println(httpEntity.getBody());
     //}
+
+    @PostMapping("/getUserInformation")
+    public User getUserInformation(@RequestBody User user) {
+        System.out.println(user.getUser_id());
+        return userService.getUserInformation(user.getUser_id());
+    }
+
+    @PostMapping("/changeUserInformation")
+    public Response changeUserInformation(@RequestBody User user) {
+        System.out.println(user.getInterests());
+        return userService.updateUserInformation(user);
+    }
+
+
 }

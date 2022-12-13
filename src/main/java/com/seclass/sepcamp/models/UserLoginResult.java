@@ -5,6 +5,8 @@ public class UserLoginResult {
     private String token;
     private String message;
     private int priority;
+    private int user_id;
+    private int team_id;
 
     public boolean isSuccess() {
         return success;
@@ -36,5 +38,21 @@ public class UserLoginResult {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public int getTeam_id() {
+        return team_id;
+    }
+
+    public void setTeam_id(int team_id) {
+        this.team_id = team_id;
     }
 }

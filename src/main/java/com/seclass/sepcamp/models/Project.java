@@ -1,30 +1,40 @@
 package com.seclass.sepcamp.models;
 
 public class Project {
-    int Project_Id;
+    int Project_id;
+    String Project_name;
     String Introduction;
     int Visible;
     String Term;
 
-    public Project(String introduction, int visible, String term) {
+    public Project(String introduction, String name,int visible, String term) {
         Introduction = introduction;
+        Project_name = name;
         Visible = visible;
         Term = term;
     }
 
-    public Project(int project_Id ,String introduction, int visible, String term) {
-        Project_Id = project_Id;
+    public Project(int project_id) {
+        Project_id = project_id;
+    }
+
+    public Project() {
+    }
+
+    public Project(int project_id, String introduction, String name, int visible, String term) {
+        Project_id = project_id;
         Introduction = introduction;
+        Project_name = name;
         Visible = visible;
         Term = term;
     }
 
-    public int getProject_Id() {
-        return Project_Id;
+    public int getProject_id() {
+        return Project_id;
     }
 
-    public void setProject_Id(int project_Id) {
-        Project_Id = project_Id;
+    public void setProject_id(int project_id) {
+        Project_id = project_id;
     }
 
     public String getIntroduction() {
@@ -51,13 +61,13 @@ public class Project {
         Term = term;
     }
 
-    @Override
-    public String toString() {
-        return "Project{" +
-                "project_Id=" + Project_Id +
-                ", Introduction='" + Introduction + '\'' +
-                ", Visible=" + Visible +
-                ", term='" + Term + '\'' +
-                '}';
+    public String getProject_name() {
+        return Project_name;
     }
+
+    public void setProject_name(String project_name) {
+        Project_name = project_name;
+    }
+
+
 }

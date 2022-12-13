@@ -6,6 +6,9 @@ public class Team {
     int Leader;
     int Project_id;
     String Term;
+    String Introduction;
+    String Interests;
+    String QQNumber;
 
     public Team(int teamId, String teamName, int leader, int projectId, String term) {
         Team_id = teamId;
@@ -36,15 +39,48 @@ public class Team {
         Term = "";
     }
 
-    @Override
-    public String toString() {
-        return "Team{" +
-                "TeamId=" + Team_id +
-                ", TeamName='" + Team_name + '\'' +
-                ", Leader=" + Leader +
-                ", ProjectId=" + Project_id +
-                ", Term='" + Term + '\'' +
-                '}';
+    public Team(String team_name, int leader, int project_id, String term, String interests, String introduction) {
+        Team_name = team_name;
+        Leader = leader;
+        Project_id = project_id;
+        Term = term;
+        Interests = interests;
+        Introduction = introduction;
+    }
+
+    public Team(String team_name, int leader, int project_id, String term, String introduction, String interests, String QQNumber) {
+        Team_name = team_name;
+        Leader = leader;
+        Project_id = project_id;
+        Term = term;
+        Introduction = introduction;
+        Interests = interests;
+        this.QQNumber = QQNumber;
+    }
+
+
+    public String getQQNumber() {
+        return QQNumber;
+    }
+
+    public void setQQNumber(String QQNumber) {
+        this.QQNumber = QQNumber;
+    }
+
+    public String getInterests() {
+        return Interests;
+    }
+
+    public void setInterests(String interests) {
+        Interests = interests;
+    }
+
+    public String getIntroduction() {
+        return Introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        Introduction = introduction;
     }
 
     public int getTeam_id() {
@@ -86,4 +122,5 @@ public class Team {
     public void setTerm(String term) {
         Term = term;
     }
+
 }

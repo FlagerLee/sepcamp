@@ -28,7 +28,9 @@ public class ProjectService {
         return ResponseUtils.ResponseMaker(result,"创建项目成功","创建项目失败");
     }
 
-
+    public int GetProjectIdByProjectName(String project_name) {
+        return projectDao.GetProjectIdByProjectName(project_name);
+    }
 
     public Response DeleteProject(int ProjectId){
         boolean result = projectDao.DeleteOneProject(ProjectId) > 0;
@@ -42,6 +44,13 @@ public class ProjectService {
         }
         boolean ChangeSuccess = projectDao.UpdateIntroductionByProjectId(ProjectId, Introduction) > 0;
         return ResponseUtils.ResponseMaker(ChangeSuccess,"修改项目介绍成功","修改项目介绍失败");
+    }
+
+    public Response ChangeProjectName(Project project) {
+
+
+        boolean ChangeSuccess = projectDao.UpdateNameByProjectId(project.getProject_id(), project.getProject_name()) > 0;
+        return ResponseUtils.ResponseMaker(ChangeSuccess,"修改项目名称成功","修改项目名称失败");
     }
 
     public Response ChangeProjectVisible(int ProjectId, int Visible){
