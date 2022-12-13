@@ -13,9 +13,9 @@ public interface HomeworkDao {
 
     //多用户单作业插入
     @Insert("<script> " +
-            "INSERT INTO  SEPCAMP_HOMEWORK(Homework_Id,User_Id, Describe_Text, Start_Time,End_Time,Term) VALUES \n"+
+            "INSERT INTO  SEPCAMP_HOMEWORK(Homework_Id,User_Id, Describe_Text, Start_Time,End_Time,Term,Homework_Type) VALUES \n"+
             "  <foreach collection= 'list' item= 'item'  separator=','>\n" +
-            "(#{item.Homework_Id},#{item.User_Id},#{item.Describe_Text},#{item.Start_Time},#{item.End_Time},#{item.Term})\n"+
+            "(#{item.Homework_Id},#{item.User_Id},#{item.Describe_Text},#{item.Start_Time},#{item.End_Time},#{item.Term},#{item.Homework_Type})\n"+
             " </foreach> \n"+
             "</script>")
     int CreateHomeworkForUsers(@Param(value = "list") List<Homework> list);
@@ -39,10 +39,9 @@ public interface HomeworkDao {
             "Where Homework_Id = #{Homework_Id}")
     List<Homework>  GetHomeworkByHomeworkId(String Homework_Id);
 
-    @Select("Select Homework_Id,Describe_Text,Start_Time,End_Time\n" +
+    @Select("Select Homework_Id,Describe_Text,Start_Time,End_Time,Homework_Type\n" +
             "From SEPCAMP_HOMEWORK\n" +
-            "Where Term = #{Term}\n" +
-            "Group by Homework_Id")
+            "Where Term = #{Term}")
     List<Homework>  GetHomeworkByTerm(String Term);
 
 

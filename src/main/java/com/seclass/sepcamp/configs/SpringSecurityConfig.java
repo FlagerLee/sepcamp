@@ -37,20 +37,18 @@ public class SpringSecurityConfig {
                 .loginProcessingUrl("/dologin")
                 .defaultSuccessUrl("/index")
         ;
-        // set authentication
+        // disable csrf
         http
                 .csrf()
                 .disable()
+        ;
+        // set authentication
+        http
                 .authorizeRequests()
-                .antMatchers("/dologin", "/register", "/register/verify")
-                .permitAll()
-                .and()
-                .authorizeRequests()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .logout()
-                .permitAll()
+                .antMatchers("/homework/**").hasAuthority("student")
+                .antMatchers("/homework/update", "/homework/create", "/homework/delete").hasAuthority("teacher")
+                .antMatchers("/dologin", "/register", "/register/verify").permitAll()
+                .anyRequest().authenticated()
         ;
         // add cors support
         http.cors();

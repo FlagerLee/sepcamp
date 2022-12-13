@@ -46,14 +46,20 @@ public class UserService implements UserDetailsService {
     private String private_key;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDao.getUserByUsername(username);
-        if(user == null) {
-            throw new UsernameNotFoundException("邮箱或密码错误");
+        try {
+            User user = userDao.getUserByUsername(username);
+            if(user == null) {
+                throw new UsernameNotFoundException("邮箱或密码错误");
+            }
+            if(!user.getEnabled()) {
+                throw new UsernameNotFoundException("用户未验证");
+            }
+            return user;
         }
-        if(!user.getEnabled()) {
-            throw new UsernameNotFoundException("用户未验证");
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        return user;
     }
 
     public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException {

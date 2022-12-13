@@ -22,7 +22,7 @@ public class HomeworkService {
     @Autowired
     private UserDao userDao;
 
-    public Response CreateHomeworkForUsers(String DescribeText, long StartTime, long EndTime, String Term){
+    public Response CreateHomeworkForUsers(String DescribeText, long StartTime, long EndTime, String Term, short HomeworkType){
 
         if(DescribeText.length() <= 0 || DescribeText.length() >= 1000){
             return new Response("描述文本长度不符合要求，应在1~1000个字符之间",false);
@@ -43,7 +43,7 @@ public class HomeworkService {
             String startTimeStr = df.format(new Timestamp(StartTime));//获取开始时间时间戳
             String endTimeStr =  df.format(new Timestamp(EndTime));//获取结束时间时间戳
 
-            Homework temp = new Homework(df.format(currentTime),userList.get(i).getUser_id(),DescribeText,startTimeStr,endTimeStr,Term);
+            Homework temp = new Homework(df.format(currentTime),userList.get(i).getUser_id(),DescribeText,startTimeStr,endTimeStr,Term,HomeworkType);
             homeworkList.add(temp);
         }
 

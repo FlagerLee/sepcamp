@@ -13,15 +13,25 @@ public class Homework {
     String Text_Answer;
     String File_Answer;
     String Term;
+    short Homework_Type;
+
+    public short getHomework_Type() {
+        return Homework_Type;
+    }
+
+    public void setHomework_Type(short homework_Type) {
+        Homework_Type = homework_Type;
+    }
 
     //创造新作业
-    public Homework( String homework_Id,int user_Id, String describe_Text, String start_Time, String end_Time,String term) {
+    public Homework( String homework_Id,int user_Id, String describe_Text, String start_Time, String end_Time,String term, short homework_Type) {
         Homework_Id = homework_Id;
         User_Id = user_Id;
         Describe_Text = describe_Text;
         Start_Time = start_Time;
         End_Time = end_Time;
         Term = term;
+        Homework_Type = homework_Type;
     }
 
     public Homework( String homework_Id, String describe_Text, String start_Time, String end_Time) {
