@@ -113,6 +113,10 @@ public class TeamService {
         }
     }
 
+    public List<User> GetTeamMember(int teamId){
+        return userDao.getUserByTeamId(teamId);
+    }
+
 
 
 }
