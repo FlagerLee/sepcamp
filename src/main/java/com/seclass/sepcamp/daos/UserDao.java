@@ -40,4 +40,7 @@ public interface UserDao {
 
     @Select("SELECT user_id, username, team_id from sepcamp_user where team_id is not null")
     List<User> getTeamedUser();
+
+    @Update("UPDATE SEPCAMP_USER SET TEAM_ID = #{team_id} WHERE USER_ID = #{user_id}")
+    int setTeam(int team_id, int user_id);
 }

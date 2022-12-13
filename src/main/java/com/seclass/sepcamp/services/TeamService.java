@@ -71,6 +71,10 @@ public class TeamService {
 
     }
 
+    public int GetTeamIdByTeamName(String team_name) {
+        return teamDao.GetTeamByTeamname(team_name).get(0).getTeam_id();
+    }
+
     public Response UpdateTeamNameById(String teamName, int teamId) {
         boolean updateSuccess = teamDao.UpdateTeamNameById(teamName, teamId) > 0;
         return ResponseUtils.ResponseMaker(updateSuccess,"修改队伍名字成功","修改队伍名字失败");

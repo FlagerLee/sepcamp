@@ -144,6 +144,22 @@ public class TeamController {
         public int getTeam_members() {
             return team_members;
         }
+
+        public String getTeam_name() {
+            return team_name;
+        }
+
+        public String getTeam_leader() {
+            return team_leader;
+        }
+
+        public String getIntroduction() {
+            return introduction;
+        }
+
+        public int getTeam_id() {
+            return team_id;
+        }
     }
 
     @GetMapping("GetAllTeamInfo")
