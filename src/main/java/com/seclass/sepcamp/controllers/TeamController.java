@@ -16,9 +16,10 @@ public class TeamController {
     @Autowired
     public TeamService teamService;
 
-    @PostMapping("getTeamById/{teamId}")
-    public String GetTeamById(@RequestBody int teamId){
-        return teamService.GetTeamById(teamId).toString();
+    @PostMapping("getTeamById")
+    public String GetTeamById(@RequestBody Team team){
+        System.out.println(team.getTeam_id());
+        return teamService.GetTeamById(team.getTeam_id()).toString();
     }
 
     @PostMapping("getAllTeam")

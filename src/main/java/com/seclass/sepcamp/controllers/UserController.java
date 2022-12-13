@@ -35,9 +35,9 @@ public class UserController {
     //}
 
     @PostMapping("/getUserInformation")
-    public User getUserInformation(@RequestBody int userId) {
-        System.out.println(userId);
-        return userService.getUserInformation(userId);
+    public User getUserInformation(@RequestBody User user) {
+        System.out.println(user.getUser_id());
+        return userService.getUserInformation(user.getUser_id());
     }
 
 
