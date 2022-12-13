@@ -60,8 +60,12 @@ public class TeamController {
     }
 
     @PostMapping("ChangeTeamInformation")
-    public Response ChangeTeamInformation(Team team) {
-        System.out.println(team);
+    public Response ChangeTeamInformation(@RequestBody  Team team) {
+
+        //bug qqnumber传不进来，通过project_id去代传
+        team.setQQNumber(String.valueOf(team.getProject_id()));
+
+
         return teamService.UpdateTeamInformation(team);
     }
 

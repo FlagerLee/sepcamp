@@ -38,7 +38,7 @@ public interface TeamDao {
     @Update("update sepcamp_team set TERM =#{termId}  where team_id = #{teamId}")
     int UpdateTeamTermById(String termId,int teamId);
 
-    @Update("update sepcamp_team set TEAM_NAME =#{TeamName},LEADER =#{Leader},PROJECT_ID =#{ProjectId},TERM =#{Term},Interests=#{Interests},Introduction=#{Introduction}  where team_id = #{TeamId}")
+    @Update("update sepcamp_team set TEAM_NAME =#{Team_name},Interests=#{Interests},Introduction=#{Introduction},QQNumber=#{QQNumber}  where team_id = #{Team_id}")
     int UpdateTeamById(Team team);
 
 

@@ -71,7 +71,8 @@ public class ProjectController {
         return projectService.DeleteProject(ProjectId);
     }
     @PostMapping("/changeName")
-    public Response ChangeName(Project project) {
+    public Response ChangeName(@RequestBody  Project project) {
+        System.out.println(project.getProject_name());
         return projectService.ChangeProjectName(project);
     }
     @PostMapping("/changeIntroduction")

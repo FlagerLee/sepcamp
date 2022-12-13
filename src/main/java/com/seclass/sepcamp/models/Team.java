@@ -58,6 +58,7 @@ public class Team {
         this.QQNumber = QQNumber;
     }
 
+
     public String getQQNumber() {
         return QQNumber;
     }
