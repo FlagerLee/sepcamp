@@ -1,10 +1,10 @@
 package com.seclass.sepcamp.models;
 
 public class UserRegisterResult {
-    private final String message;
-    private final Boolean success;
+    private String message;
+    private boolean success;
 
-    public UserRegisterResult(String message, Boolean success) {
+    public UserRegisterResult(String message, boolean success) {
         this.message = message;
         this.success = success;
     }
@@ -13,7 +13,15 @@ public class UserRegisterResult {
         return message;
     }
 
-    public Boolean success() {
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public boolean isSuccess() {
         return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 }

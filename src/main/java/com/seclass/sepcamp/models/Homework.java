@@ -3,7 +3,7 @@ package com.seclass.sepcamp.models;
 import java.sql.Time;
 
 public class Homework {
-    String Homework_Id;
+    String Homework_Id; // homework_Id
     int User_Id;
     boolean Is_Submitted;
     String Describe_Text;
