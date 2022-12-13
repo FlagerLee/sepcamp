@@ -28,6 +28,9 @@ public interface ProjectDao {
     @Update("Update Sepcamp_project Set Introduction = #{Introduction} Where Project_Id = #{Project_Id}")
     int UpdateIntroductionByProjectId(int Project_Id,String Introduction);
 
+    @Update("Update Sepcamp_project Set project_name = #{Name} Where Project_Id = #{Project_Id}")
+    int UpdateNameByProjectId(int Project_Id,String Name);
+
     @Update("Update Sepcamp_project Set Visible = #{Visible} Where Project_Id = #{Project_Id}")
     int UpdateVisibleByProjectId(int Project_Id,int Visible);
 

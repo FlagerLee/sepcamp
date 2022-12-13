@@ -24,9 +24,7 @@ public class TeamController {
 
     @PostMapping("getTeamById")
     public Team GetTeamById(@RequestBody Team team){
-        System.out.println(team.getTeam_id());
         Team result = teamService.GetTeamById(team.getTeam_id());
-        System.out.println(result);
         return result;
     }
 
@@ -61,6 +59,12 @@ public class TeamController {
         return teamService.UpdateTeamNameById(teamName,teamId);
     }
 
+    @PostMapping("ChangeTeamInformation")
+    public Response ChangeTeamInformation(Team team) {
+        System.out.println(team);
+        return teamService.UpdateTeamInformation(team);
+    }
+
     static class UserList {
         List<Integer> ids;
         List<String> names;
@@ -82,19 +86,18 @@ public class TeamController {
         }
 
     }
-
     @PostMapping("GetTeamMember")
-    public UserList GetTeamMember(@RequestBody Project project) {
+    public UserList GetTeamMember(@RequestBody Team team) {
 
-        List<User> list = teamService.GetTeamMember(project.getProject_id());
+        List<User> list = teamService.GetTeamMember(team.getTeam_id());
         UserList userlist = new UserList();
         userlist.ids = new ArrayList<>();
         userlist.names = new ArrayList<>();
+        System.out.println(list.get(0).toString());
         for(int i = 0;i<list.size();i++){
             userlist.ids.add(list.get(i).getUser_id());
             userlist.names.add(list.get(i).getName());
         }
-        System.out.println(userlist);
         return userlist;
     }
 

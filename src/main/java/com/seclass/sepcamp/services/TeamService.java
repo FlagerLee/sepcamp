@@ -88,6 +88,12 @@ public class TeamService {
         return ResponseUtils.ResponseMaker(updateSuccess,"修改队伍项目成功","修改队伍项目失败");
     }
 
+    public Response UpdateTeamInformation(Team t){
+
+        boolean updateSuccess =  teamDao.UpdateTeamById(t) > 0;
+        return ResponseUtils.ResponseMaker(updateSuccess,"修改队伍项目成功","修改队伍项目失败");
+    }
+
     public Response DropOutOfLine(int userId) {
 
         User thisUser = userDao.getUserByUserId(userId);

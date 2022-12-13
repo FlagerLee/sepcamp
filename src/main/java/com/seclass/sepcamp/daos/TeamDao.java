@@ -20,7 +20,7 @@ public interface TeamDao {
     @Select("SELECT * FROM SEPCAMP_TEAM")
     List<Team> GetAllTeams();
 
-    @Insert("insert into sepcamp_team(TEAM_NAME,LEADER,PROJECT_ID,TERM) values(#{Team_name},#{Leader},#{Project_id},#{Term})")
+    @Insert("insert into sepcamp_team(TEAM_NAME,LEADER,PROJECT_ID,TERM,Interests,Introduction,QQNUMBER) values(#{Team_name},#{Leader},#{Project_id},#{Term},#{Interests},#{Introduction},#{QQNumber})")
     int CreateTeam(Team team);
 
     @Delete("delete from sepcamp_team where team_id = #{teamId}")
@@ -38,7 +38,8 @@ public interface TeamDao {
     @Update("update sepcamp_team set TERM =#{termId}  where team_id = #{teamId}")
     int UpdateTeamTermById(String termId,int teamId);
 
-    @Update("update sepcamp_team set TEAM_NAME =#{TeamName},LEADER =#{Leader},PROJECT_ID =#{ProjectId},TERM =#{Term}  where team_id = #{TeamId}")
+    @Update("update sepcamp_team set TEAM_NAME =#{TeamName},LEADER =#{Leader},PROJECT_ID =#{ProjectId},TERM =#{Term},Interests=#{Interests},Introduction=#{Introduction}  where team_id = #{TeamId}")
     int UpdateTeamById(Team team);
+
 
 }

@@ -44,6 +44,13 @@ public class ProjectService {
         return ResponseUtils.ResponseMaker(ChangeSuccess,"修改项目介绍成功","修改项目介绍失败");
     }
 
+    public Response ChangeProjectName(Project project) {
+
+
+        boolean ChangeSuccess = projectDao.UpdateNameByProjectId(project.getProject_id(), project.getProject_name()) > 0;
+        return ResponseUtils.ResponseMaker(ChangeSuccess,"修改项目名称成功","修改项目名称失败");
+    }
+
     public Response ChangeProjectVisible(int ProjectId, int Visible){
 
         boolean ChangeSuccess = projectDao.UpdateVisibleByProjectId(ProjectId,Visible) > 0;

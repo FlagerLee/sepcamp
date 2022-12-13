@@ -18,6 +18,9 @@ public class Project {
         Project_id = project_id;
     }
 
+    public Project() {
+    }
+
     public Project(int project_id, String introduction, String name, int visible, String term) {
         Project_id = project_id;
         Introduction = introduction;
