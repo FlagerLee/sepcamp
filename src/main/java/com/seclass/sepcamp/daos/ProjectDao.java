@@ -8,8 +8,8 @@ import java.util.List;
 @Mapper
 public interface ProjectDao {
 
-    @Insert("INSERT INTO SEPCAMP_PROJECT(INTRODUCTION, VISIBLE, TERM) " +
-            "VALUE(#{Introduction}, #{Visible}, #{Term})")
+    @Insert("INSERT INTO SEPCAMP_PROJECT(INTRODUCTION, Project_name,VISIBLE, TERM) " +
+            "VALUE(#{Introduction},#{Project_name}, #{Visible}, #{Term})")
     int CreateOneProject(Project project);
 
     @Delete("Delete From SEPCAMP_PROJECT  Where Project_Id = #{Project_Id}")
@@ -20,7 +20,7 @@ public interface ProjectDao {
             " Where Visible = #{Visible} AND Term = #{Term} ")
     List<Project>  GetProjectList(int Visible,String Term);
 
-    @Select(" Select Project_Id,Introduction,Visible,Term " +
+    @Select(" Select Project_Id,Introduction,Project_name,Visible,Term " +
             " From SEPCAMP_PROJECT " +
             " Where Project_Id = #{Project_Id} ")
     Project  GetProjectById(int Project_Id);

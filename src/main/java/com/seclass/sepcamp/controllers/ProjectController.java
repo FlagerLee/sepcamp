@@ -18,8 +18,8 @@ public class ProjectController {
     ProjectService projectService;
 
     @PostMapping("/create")
-    public Response Create(String Introduction, int Visible, String Term) {
-        return projectService.CreateNewProject(new Project(Introduction,Visible,Term));
+    public Response Create(Project project) {
+        return projectService.CreateNewProject(new Project(project.getIntroduction(),project.getProject_name(),project.getVisible(),project.getTerm()));
     }
 
     @PostMapping("/delete")
