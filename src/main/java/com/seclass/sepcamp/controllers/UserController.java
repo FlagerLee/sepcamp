@@ -33,4 +33,13 @@ public class UserController {
     //public void test(HttpEntity<String> httpEntity) {
     //    System.out.println(httpEntity.getBody());
     //}
+
+    @PostMapping("/getUserInformation")
+    public User getUserInformation(@RequestBody int userId) {
+        System.out.println(userId);
+        return userService.getUserInformation(userId);
+    }
+
+
+
 }

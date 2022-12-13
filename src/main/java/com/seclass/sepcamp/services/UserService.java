@@ -19,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -169,5 +170,9 @@ public class UserService implements UserDetailsService {
             userList.add(userDao.getUserByUserId(id));
         }
         return userList;
+    }
+
+    public User getUserInformation(int userId) {
+        return userDao.getUserByUserId(userId);
     }
 }

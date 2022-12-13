@@ -34,6 +34,8 @@ public class SpringSecurityBeanConfig {
             UserLoginResult result = new UserLoginResult();
             result.setSuccess(true);
             result.setToken(token);
+            result.setTeam_id(principle.getTeam_id());
+            result.setUser_id(principle.getUser_id());
             result.setMessage(principle.getUsername());
             result.setPriority(principle.getPriority());
 

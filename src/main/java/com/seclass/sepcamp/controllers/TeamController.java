@@ -16,18 +16,18 @@ public class TeamController {
     @Autowired
     public TeamService teamService;
 
-    @RequestMapping("getTeamById/{teamId}")
-    public String GetTeamById(@PathVariable int teamId){
+    @PostMapping("getTeamById/{teamId}")
+    public String GetTeamById(@RequestBody int teamId){
         return teamService.GetTeamById(teamId).toString();
     }
 
-    @RequestMapping("getAllTeam")
+    @PostMapping("getAllTeam")
     public String GetAllTeams(){
         return teamService.GetAllTeams().toString();
     }
 
     //test interface
-    @RequestMapping("AddOneTeam")
+    @PostMapping("AddOneTeam")
     public Response AddOneTeam(){
        return teamService.CreateTeam(new Team("newName",1, 1, "1"));
     }
