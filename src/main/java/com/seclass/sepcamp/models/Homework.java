@@ -74,20 +74,7 @@ public class Homework {
         File_Answer = file_Answer;
     }
 
-    @Override
-    public String toString() {
-        return "Homework{" +
-                "Homework_Id=" + Homework_Id +
-                ", User_Id=" + User_Id +
-                ", Is_Submitted=" + Is_Submitted +
-                ", Describe_Text='" + Describe_Text + '\'' +
-                ", Last_UpdateTime='" + Last_UpdateTime + '\'' +
-                ", Start_Time='" + Start_Time + '\'' +
-                ", End_Time='" + End_Time + '\'' +
-                ", Text_Answer='" + Text_Answer + '\'' +
-                ", File_Answer='" + File_Answer + '\'' +
-                '}';
-    }
+
 
 
     public String getTerm() {

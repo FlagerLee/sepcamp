@@ -37,16 +37,7 @@ public class Team {
         Term = "";
     }
 
-    @Override
-    public String toString() {
-        return "Team{" +
-                "TeamId=" + Team_id +
-                ", TeamName='" + Team_name + '\'' +
-                ", Leader=" + Leader +
-                ", ProjectId=" + Project_id +
-                ", Term='" + Term + '\'' +
-                '}';
-    }
+
 
     public int getTeam_id() {
         return Team_id;
