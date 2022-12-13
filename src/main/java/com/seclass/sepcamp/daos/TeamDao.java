@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 @Mapper
-public interface TeamMapper {
+public interface TeamDao {
 
     @Select("select * from sepcamp_team where team_id = #{teamId}")
     Team GetOneTeam(int teamId);
