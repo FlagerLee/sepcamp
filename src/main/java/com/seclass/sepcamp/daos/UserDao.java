@@ -17,18 +17,21 @@ public interface UserDao {
     @Select("SELECT * FROM SEPCAMP_USER WHERE USERNAME = #{username}")
     User getUserByUsername(String username);
 
-    @Select("SELECT * FROM SEPCAMP_USER WHERE USER_ID = #{userId}")
+    @Select("SELECT * FROM SEPCAMP_USER WHERE USER_ID = #{user_id}")
     User getUserByUserId(int  userId);
 
     @Select("SELECT * FROM SEPCAMP_USER WHERE Term = #{term}")
     List<User> getUserByTerm(String  term);
 
-    @Select("SELECT * FROM SEPCAMP_USER WHERE TEAM_ID = #{teamID}")
+    @Select("SELECT * FROM SEPCAMP_USER WHERE TEAM_ID = #{team_iD}")
     List<User> getUserByTeamId(int  teamID);
 
 
-    @Update("UPDATE SEPCAMP_USER SET TEAM_ID = #{teamId}  WHERE USER_ID = #{userId}")
+    @Update("UPDATE SEPCAMP_USER SET TEAM_ID = #{teamId}  WHERE USER_ID = #{user_id}")
     int updateTeamIdForUser(int  userId,int teamId);
+
+    @Update("UPDATE SEPCAMP_USER SET QQNUMBER =#{qqnumber} ,INTERESTS=#{interests}, INTRODUCTION = #{introduction}  WHERE USER_ID = #{user_id}")
+    int updateUserInformation(User user);
 
 
     @Insert("INSERT INTO SEPCAMP_USER(EMAIL, USERNAME, PASSWORD, PRIORITY, AVATAR, TERM, ENABLED) " +

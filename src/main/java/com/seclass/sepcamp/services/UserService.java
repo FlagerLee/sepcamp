@@ -178,6 +178,12 @@ public class UserService implements UserDetailsService {
         return userDao.getUserByUserId(userId);
     }
 
+    public Response updateUserInformation(User user) {
+
+        boolean updateSuccess = userDao.updateUserInformation(user) > 0;
+        return ResponseUtils.ResponseMaker(updateSuccess,"修改个人信息成功","修改个人信息失败");
+    }
+
     public List<User> getTeamedUser() {
         return userDao.getTeamedUser();
     }

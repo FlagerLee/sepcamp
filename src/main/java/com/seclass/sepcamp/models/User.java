@@ -20,6 +20,9 @@ public class User implements UserDetails {
     private String avatar;
     private String term;
     private boolean enabled;
+    private String qqnumber;
+    private String interests;
+    private String introduction;
 
 
 
@@ -69,6 +72,29 @@ public class User implements UserDetails {
         return true;
     }
 
+    public String getQqnumber() {
+        return qqnumber;
+    }
+
+    public void setQqnumber(String qqnumber) {
+        this.qqnumber = qqnumber;
+    }
+
+    public String getInterests() {
+        return interests;
+    }
+
+    public void setInterests(String interests) {
+        this.interests = interests;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
 
     public String getEmail() {
         return email;
